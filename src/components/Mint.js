@@ -10,47 +10,26 @@ const Mint = () => {
 
     const [file, setFile] = useState(null);
 
-    const {saveFile, moralisFile} = useMoralisFile();
-
     const name = useRef();
     const description = useRef();
     const imgHash = useRef(file);
 
-    
-
-    const uploadFile = (file) => {
-        const base64 = file;
-        saveFile(
-            "myfile.txt",
-            {base64},
-            {
-                type: "base64",
-                saveIPFS: true,
-                onSuccess: (result) => console.log(result.ipfs()),
-                onError: (error) => console.log(error)
-            }
-        );
-    };
-
     async function submit(e) {
         e.preventDefault();
-        
-        console.log('file button clicked')
-        console.log(file);
-        // imgHash.current?.click();
+        // console.log('file button clicked')
+        // console.log(file);
         let imgFile = new Moralis.File(file.name, file);
         let finalImgFile = await imgFile.saveIPFS();
         console.log(finalImgFile._url);
         console.log(finalImgFile.ipfs(), finalImgFile.hash());
    
-       
         const metaData = {
             name: name.current.value,
             description: description.current.value,
             image: 'https://gateway.moralisipfs.com/ipfs/'+ finalImgFile.hash()
         }
 
-        console.log(metaData);
+        // console.log(metaData);
 
         const btoa2 = function(str) {
             return Buffer.from(str).toString('base64');
@@ -92,9 +71,19 @@ const Mint = () => {
 
 export default Mint
 
-  // const options = { address: "0x27c5ee7d81a430b12a2aa9c7b19e8cf01944afce", chain: "ropsten"};
-    // let NFTs = await Moralis.Web3API.token.getAllTokenIds(options);
-    // console.log(NFTs)
+    // const uploadFile = (file) => {
+    //     const base64 = file;
+    //     saveFile(
+    //         "myfile.txt",
+    //         {base64},
+    //         {
+    //             type: "base64",
+    //             saveIPFS: true,
+    //             onSuccess: (result) => console.log(result.ipfs()),
+    //             onError: (error) => console.log(error)
+    //         }
+    //     );
+    // };
 
 // const ipfsHash = imgHash.current.value;
         // await ipfsHash.saveIPFS();
