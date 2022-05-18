@@ -1,32 +1,155 @@
-import React, {useEffect} from 'react';
-import { useMoralis} from "react-moralis";
+import React, {useEffect, useState} from 'react';
+import { useMoralis, useMoralisWeb3Api} from "react-moralis";
 // import Moralis from 'moralis';
+
 
 
 const Cards = () => {
     const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
     useMoralis();
-    // const options = { address: "0x27c5ee7d81a430b12a2aa9c7b19e8cf01944afce", chain: "ropsten"};
-    // let NFTs = await Moralis.Web3API.token.getAllTokenIds(options);
-    // console.log(NFTs)
-    
+
+    const [count, setCount] = useState(0);
+    const [nftImage, setNftImage] = useState('');
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [nftObject, setnftObject] = useState({});
+    const [nftArray, setNftArray] = useState([]);
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const Web3Api = useMoralisWeb3Api();
+
+    // let account;
+
+    const getNFTs = async () => {
+        // const options = { address: "0x36736f7231E55182e09be6fd14ABdB528BAFF6B5"};
+        let NFTs = await Web3Api.Web3API.account.getNFTs({
+            chain: "ropsten",
+          });
+          setCount(NFTs.total)
+          let setArrayWObject = NFTs.result;
+          setnftObject(NFTs)
+          setNftArray(NFTs.result);
+
+          console.log(nftObject)
+          console.log(nftArray);
+        // console.log(NFTs)
+    }
+    useEffect(() => {
+        setTimeout(() => {
+            getNFTs()
+        }, 1000)
+        
+    }, [])
+        
 
     useEffect(() => {
         if(isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
 
-    }, [isAuthenticated, isWeb3Enabled])
+    }, [isAuthenticated, isWeb3Enabled, enableWeb3, isWeb3EnableLoading])
 
 
     return(
-        <div className="card" style={{width: '18rem'}}>
-            <img className="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22286%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20286%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_180ca1f9e97%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_180ca1f9e97%22%3E%3Crect%20width%3D%22286%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22107.1953125%22%20y%3D%2296.3%22%3E286x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card img cap" />
-            <div className="card-body">
-                <h5 className="card-title">Card title</h5>
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="/" className="btn btn-primary">Go somewhere</a>
+        <div>
+            <h5>Your total NFT count is {count}</h5>
+            {nftObject? 
+            <div className="card" style={{width: '18rem', padding: '10px', margin: '10px'}}>
+                
+                {nftArray.map((items) => {
+                    const {metadata, token_id} = items
+                    const metaData = JSON.parse(metadata)
+                    const {name, description, image} = metaData;
+
+                    console.log(metaData);
+                    {/* console.log(items); */}
+                   
+
+                    return (
+                        <div key={token_id}>
+                        
+                        <img className="card-img-top" src={image} alt="Card img cap" style={{maxHeight: "300px"}} />
+                            <div className="card-body">
+                                <h5 className="card-title">{name}</h5>
+                                <p className="card-text">{token_id}</p>
+                                <p className="card-text">{description}</p>
+                                <a href="/" className="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                        
+                    )  
+                })}
             </div>
+            
+            : 
+            <></>}
+            
         </div>
     )
 }
 
 export default Cards
+
+/**
+ * 
+ * NFT RETURN OBJECT
+ * 
+ * {
+    "total": 3,
+    "page": 0,
+    "page_size": 500,
+    "cursor": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3aGVyZSI6eyJvd25lcl9vZiI6IjB4MzY3MzZmNzIzMWU1NTE4MmUwOWJlNmZkMTRhYmRiNTI4YmFmZjZiNSJ9LCJsaW1pdCI6NTAwLCJvZmZzZXQiOjAsIm9yZGVyIjpbWyJ0cmFuc2Zlcl9pbmRleCIsIkRFU0MiXV0sInBhZ2UiOjEsImtleSI6IjEyMjc0ODA5LjIxLjEuMCIsInRvdGFsIjozLCJpYXQiOjE2NTI4Mzc3MjN9.oDrBqXpBCNuXd-K0ZHIc2y6pcoDgGwA8JhzeMbwPH6E",
+    "result": [
+        {
+            "token_address": "0x2995edf91516499909a5b2565f95f3cd7f8e5beb",
+            "token_id": "2",
+            "amount": "1",
+            "owner_of": "0x36736f7231e55182e09be6fd14abdb528baff6b5",
+            "token_hash": "f4dd9b4c704a2ca7532009e3aa578167",
+            "block_number_minted": "12274864",
+            "block_number": "12274864",
+            "contract_type": "ERC721",
+            "name": "RyanNFT",
+            "symbol": "RNFT",
+            "token_uri": "https://ipfs.moralis.io:2053/ipfs/QmTuzRVd3Q5jF3TDVT5XZFkhABn8cpLGM1kEM3ShE6cFsr",
+            "metadata": "{\"name\":\"Ryan\",\"description\":\"This is awesome!\",\"image\":\"https://gateway.moralisipfs.com/ipfs/QmUG3oGnFsMT3kGdQwyHGG2EZcUbQfFYnjA8arKKq4QwGs\"}",
+            "synced_at": "2022-05-18T01:32:47.756Z",
+            "last_token_uri_sync": null,
+            "last_metadata_sync": null
+        },
+        {
+            "token_address": "0x2995edf91516499909a5b2565f95f3cd7f8e5beb",
+            "token_id": "1",
+            "amount": "1",
+            "owner_of": "0x36736f7231e55182e09be6fd14abdb528baff6b5",
+            "token_hash": "4ccd40b2300b3981b6a8a4f3ca1bad96",
+            "block_number_minted": "12274816",
+            "block_number": "12274816",
+            "contract_type": "ERC721",
+            "name": "RyanNFT",
+            "symbol": "RNFT",
+            "token_uri": "https://ipfs.moralis.io:2053/ipfs/QmXT4uEwpe6NueKDf8NNUxNTwerF9nPymRVn8StLHc2ffd",
+            "metadata": "{\"name\":\"ryan\",\"description\":\"terminator100\",\"image\":\"https://gateway.moralisipfs.com/ipfs/QmUG3oGnFsMT3kGdQwyHGG2EZcUbQfFYnjA8arKKq4QwGs\"}",
+            "synced_at": "2022-05-18T01:32:47.756Z",
+            "last_token_uri_sync": null,
+            "last_metadata_sync": null
+        },
+        {
+            "token_address": "0x2995edf91516499909a5b2565f95f3cd7f8e5beb",
+            "token_id": "0",
+            "amount": "1",
+            "owner_of": "0x36736f7231e55182e09be6fd14abdb528baff6b5",
+            "token_hash": "68a2c0e5a8a6d7d1e57297c5cab094dd",
+            "block_number_minted": "12274809",
+            "block_number": "12274809",
+            "contract_type": "ERC721",
+            "name": "RyanNFT",
+            "symbol": "RNFT",
+            "token_uri": "https://ipfs.moralis.io:2053/ipfs/QmXT4uEwpe6NueKDf8NNUxNTwerF9nPymRVn8StLHc2ffd",
+            "metadata": "{\"name\":\"ryan\",\"description\":\"terminator100\",\"image\":\"https://gateway.moralisipfs.com/ipfs/QmUG3oGnFsMT3kGdQwyHGG2EZcUbQfFYnjA8arKKq4QwGs\"}",
+            "synced_at": "2022-05-18T01:32:47.756Z",
+            "last_token_uri_sync": null,
+            "last_metadata_sync": null
+        }
+    ],
+    "status": "SYNCED"
+}
+ */

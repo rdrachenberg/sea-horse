@@ -1,11 +1,15 @@
-import React, {useEffect, useRef, useState, useCustomHookFetchHook} from 'react';
-import { useMoralis, useMoralisFile} from "react-moralis";
-
+import React, {useEffect, useRef, useState} from 'react';
+import { useMoralis, useMoralisFile, useMoralisWeb3Api, useMoralisWeb3ApiCall} from "react-moralis";
 import Moralis from 'moralis';
+import {abi} from '../abi/abi'
+
+
+const CONTRACT_ADDRESS = process.env.REACT_APP_CONTRACT_ADDRESS;
+// console.log(CONTRACT_ADDRESS);
 
 
 const Mint = () => {
-    const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
+    const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, useWeb3ExecuteFunction, user} =
     useMoralis();
 
     const [file, setFile] = useState(null);
@@ -13,6 +17,10 @@ const Mint = () => {
     const name = useRef();
     const description = useRef();
     const imgHash = useRef(file);
+    const { native } = useMoralisWeb3Api();
+
+    const ABI = abi;
+    // console.log(ABI);
 
     async function submit(e) {
         e.preventDefault();
@@ -22,28 +30,60 @@ const Mint = () => {
         let finalImgFile = await imgFile.saveIPFS();
         console.log(finalImgFile._url);
         console.log(finalImgFile.ipfs(), finalImgFile.hash());
+        const hash = await finalImgFile.hash()
    
         const metaData = {
             name: name.current.value,
             description: description.current.value,
-            image: 'https://gateway.moralisipfs.com/ipfs/'+ finalImgFile.hash()
+            image: 'https://gateway.moralisipfs.com/ipfs/'+ hash
         }
-
-        // console.log(metaData);
 
         const btoa2 = function(str) {
             return Buffer.from(str).toString('base64');
         }
+
         const file1 = new Moralis.File(metaData.name+".json", {base64 : btoa2(JSON.stringify(metaData))});
-        
-        let finalFile = await file1.save();
+        let finalFile = await file1.saveIPFS();
+        const metaDataURI = file1.ipfs();
+        console.log(metaDataURI);
+
+        const txt = await mintToken(metaDataURI).then(() => {
+            console.log('notify')
+        });
         console.log(JSON.stringify(finalFile));
     }
+
+    async function mintToken(token_uri) {
+        const account = (user.get('ethAddress'));
+        console.log(account);
+        const options = {
+            contractAddress: CONTRACT_ADDRESS,
+            functionName: "safeMint",
+            abi: ABI,
+            params: {to: account, uri: token_uri}
+        }
+
+        const tx = await Moralis.executeFunction({...options}).then((response, err) => {
+            if(err) {
+                console.log(err)
+            }
+            console.log('ropten etherscan here: \n', 'https://ropsten.etherscan.io/tx/'+response.hash);
+
+        });
+        console.log(tx);
+       
+    }
+
+    function done() {
+
+    }
+    
+
     
 
     useEffect(() => {
         if(isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
-
+        
     }, [isAuthenticated, isWeb3Enabled, isWeb3EnableLoading, enableWeb3])
 
 
@@ -70,7 +110,7 @@ const Mint = () => {
 }
 
 export default Mint
-
+ 
     // const uploadFile = (file) => {
     //     const base64 = file;
     //     saveFile(
