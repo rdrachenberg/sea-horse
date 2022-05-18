@@ -1,80 +1,65 @@
 import React, {useEffect, useState} from 'react';
-import { useMoralis, useMoralisWeb3Api} from "react-moralis";
-// import Moralis from 'moralis';
-
-
+import {useMoralisWeb3Api} from "react-moralis";
 
 const Cards = () => {
-    const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
-    useMoralis();
-
     const [count, setCount] = useState(0);
-    const [nftImage, setNftImage] = useState('');
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
     const [nftObject, setnftObject] = useState({});
     const [nftArray, setNftArray] = useState([]);
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const Web3Api = useMoralisWeb3Api();
 
-    // let account;
-
     const getNFTs = async () => {
         // const options = { address: "0x36736f7231E55182e09be6fd14ABdB528BAFF6B5"};
         let NFTs = await Web3Api.Web3API.account.getNFTs({
             chain: "ropsten",
           });
+
           setCount(NFTs.total)
           let setArrayWObject = NFTs.result;
           setnftObject(NFTs)
-          setNftArray(NFTs.result);
-
-          console.log(nftObject)
-          console.log(nftArray);
+          setNftArray(setArrayWObject);
+        //   console.log(nftObject)
+        //   console.log(nftArray);
         // console.log(NFTs)
     }
+
     useEffect(() => {
-        setTimeout(() => {
-            getNFTs()
-        }, 1000)
-        
+        getNFTs()
     }, [])
         
+    // useEffect(() => {
+    //     if(isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading){
+    //         enableWeb3();
+            
+    //     };
 
-    useEffect(() => {
-        if(isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
-
-    }, [isAuthenticated, isWeb3Enabled, enableWeb3, isWeb3EnableLoading])
+    // }, [isAuthenticated, isWeb3Enabled, enableWeb3, isWeb3EnableLoading])
 
 
     return(
         <div>
             <h5>Your total NFT count is {count}</h5>
             {nftObject? 
-            <div className="card" style={{width: '18rem', padding: '10px', margin: '10px'}}>
-                
+                <div className='card-row'>
                 {nftArray.map((items) => {
-                    const {metadata, token_id} = items
+                    const {metadata, token_id, token_uri} = items
                     const metaData = JSON.parse(metadata)
+                    
                     const {name, description, image} = metaData;
-
-                    console.log(metaData);
-                    {/* console.log(items); */}
-                   
-
+                    
                     return (
-                        <div key={token_id}>
+                        <div className="card" key={token_id} style={{width: '18rem', maxWidth:'18rem', padding: '10px', margin: '10px'}}>
                         
                         <img className="card-img-top" src={image} alt="Card img cap" style={{maxHeight: "300px"}} />
                             <div className="card-body">
                                 <h5 className="card-title">{name}</h5>
                                 <p className="card-text">{token_id}</p>
                                 <p className="card-text">{description}</p>
-                                <a href="/" className="btn btn-primary">Go somewhere</a>
+                                <a href={token_uri} className="btn btn-primary" id='meta-data-button' target='_blank' rel='noreferrer'>See Metadata</a>
                             </div>
+                            <br/>
                         </div>
-                        
                     )  
                 })}
             </div>
