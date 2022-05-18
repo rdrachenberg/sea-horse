@@ -33,7 +33,7 @@ const Navbar = () => {
     console.log('You have been logged out!')
   }
     return(
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark" id='navbar'>
         <a className="navbar-brand" href="/">
         Sea Horse
         </a>
@@ -61,8 +61,8 @@ const Navbar = () => {
           </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/">
-            Pricing
+          <a className="nav-link" href="/explore">
+            Explore
           </a>
         </li>
         
@@ -75,7 +75,7 @@ const Navbar = () => {
     : <></>}
     {isAuthenticated? 
       <div>
-        <button onClick={logOut} disabled={isAuthenticating}> Logout 👉</button>
+        <button onClick={logOut} disabled={isAuthenticating}> Logout ✖️</button>
       </div>
       : <button id='login' onClick={login}> 🦊 MetaMask Login </button>}
       

@@ -5,8 +5,10 @@ import React, {useEffect, useState, useRef} from 'react';
 const Footer = () => {
 
     return (
-        <div className='navbar navbar-fixed-bottom navbar-dark bg-dark' id='footer'>
-            <h4>Here is some footer content</h4>
+        <div className='navbar fixed-bottom navbar-dark bg-dark' id='footer'>
+            <p>Home</p>
+            <p>Mint</p>
+            <p>Explore</p>
         </div>
     )
 }
