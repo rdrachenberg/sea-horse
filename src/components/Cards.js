@@ -10,22 +10,25 @@ const Cards = () => {
     const Web3Api = useMoralisWeb3Api();
 
     const getNFTs = async () => {
-        // const options = { address: "0x36736f7231E55182e09be6fd14ABdB528BAFF6B5"};
         let NFTs = await Web3Api.Web3API.account.getNFTs({
             chain: "ropsten",
           });
 
-          setCount(NFTs.total)
-          let setArrayWObject = NFTs.result;
-          setnftObject(NFTs)
-          setNftArray(setArrayWObject);
+        let total = NFTs.result.length;
+        setCount(total);
+
+        let setArrayWObject = NFTs.result;
+        setNftArray(setArrayWObject);
+
+        setnftObject(NFTs);
         //   console.log(nftObject)
         //   console.log(nftArray);
         // console.log(NFTs)
     }
 
     useEffect(() => {
-        getNFTs()
+        getNFTs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
         
     // useEffect(() => {

@@ -101,9 +101,8 @@ const Mint = () => {
                 console.log(e.target.files[0])
                 setFile(e.target.files[0])}} ref={imgHash}/>
             </div>
-
-            <button className='btn btn-primary' onClick={submit}>Mint</button>
-
+                
+                <button className='btn glowing' id='mint-button' onClick={submit}>Mint</button>
             </form>
         </div>
     )

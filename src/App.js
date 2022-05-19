@@ -11,6 +11,7 @@ import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import Navbar  from "./components/Navbar";
 import Home from "./components/Home";
 import Mint from './components/Mint';
+import Explore from './components/Explore'
 import Footer from "./components/Footer";
 
 
@@ -37,6 +38,9 @@ function App() {
               </Route>
               <Route exact path='/mint'>
                 <Mint />
+              </Route>
+              <Route exact path='/explore'>
+                <Explore />
               </Route>
             </Switch>
             
