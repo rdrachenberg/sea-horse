@@ -2,12 +2,11 @@ import React, { useEffect, useState} from "react";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 import './App.css';
-import { useMoralis, useMoralisWeb3Api } from "react-moralis";
+import { useMoralis } from "react-moralis";
 import Navbar  from "./components/Navbar";
 import Home from "./components/Home";
 import Mint from './components/Mint';
@@ -16,7 +15,7 @@ import Footer from "./components/Footer";
 
 
 function App() {
-  const {isAuthenticated, isAuthenticating, user, setUserData, isUserUpdating} = useMoralis();
+  const { isAuthenticated } = useMoralis();
   
 
   useEffect(() => {
@@ -24,7 +23,6 @@ function App() {
       console.log('is auth')
     }
   }, [ isAuthenticated])
-
 
   return (
     <Router>

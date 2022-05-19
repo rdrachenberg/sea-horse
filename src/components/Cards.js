@@ -87,10 +87,10 @@ export default Cards
     "cursor": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3aGVyZSI6eyJvd25lcl9vZiI6IjB4MzY3MzZmNzIzMWU1NTE4MmUwOWJlNmZkMTRhYmRiNTI4YmFmZjZiNSJ9LCJsaW1pdCI6NTAwLCJvZmZzZXQiOjAsIm9yZGVyIjpbWyJ0cmFuc2Zlcl9pbmRleCIsIkRFU0MiXV0sInBhZ2UiOjEsImtleSI6IjEyMjc0ODA5LjIxLjEuMCIsInRvdGFsIjozLCJpYXQiOjE2NTI4Mzc3MjN9.oDrBqXpBCNuXd-K0ZHIc2y6pcoDgGwA8JhzeMbwPH6E",
     "result": [
         {
-            "token_address": "0x2995edf91516499909a5b2565f95f3cd7f8e5beb",
+            "token_address": "0x2995EdF91516499909a5b2565F95F3CD7F8e5Beb",
             "token_id": "2",
             "amount": "1",
-            "owner_of": "0x36736f7231e55182e09be6fd14abdb528baff6b5",
+            "owner_of": "0x36736f7231E55182e09be6fd14ABdB528BAFF6B5",
             "token_hash": "f4dd9b4c704a2ca7532009e3aa578167",
             "block_number_minted": "12274864",
             "block_number": "12274864",
@@ -104,10 +104,10 @@ export default Cards
             "last_metadata_sync": null
         },
         {
-            "token_address": "0x2995edf91516499909a5b2565f95f3cd7f8e5beb",
+            "token_address": "0x2995EdF91516499909a5b2565F95F3CD7F8e5Beb",
             "token_id": "1",
             "amount": "1",
-            "owner_of": "0x36736f7231e55182e09be6fd14abdb528baff6b5",
+            "owner_of": "0x36736f7231E55182e09be6fd14ABdB528BAFF6B5",
             "token_hash": "4ccd40b2300b3981b6a8a4f3ca1bad96",
             "block_number_minted": "12274816",
             "block_number": "12274816",
@@ -121,10 +121,10 @@ export default Cards
             "last_metadata_sync": null
         },
         {
-            "token_address": "0x2995edf91516499909a5b2565f95f3cd7f8e5beb",
+            "token_address": "0x2995EdF91516499909a5b2565F95F3CD7F8e5Beb",
             "token_id": "0",
             "amount": "1",
-            "owner_of": "0x36736f7231e55182e09be6fd14abdb528baff6b5",
+            "owner_of": "0x36736f7231E55182e09be6fd14ABdB528BAFF6B5",
             "token_hash": "68a2c0e5a8a6d7d1e57297c5cab094dd",
             "block_number_minted": "12274809",
             "block_number": "12274809",

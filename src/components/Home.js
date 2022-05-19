@@ -4,7 +4,7 @@ import Cards from "./Cards";
 // import Moralis from 'moralis';
 
 const Home = () => {
-    const {isAuthenticated, isAuthenticating, user, setUserData, isUserUpdating} = useMoralis();
+    const {isAuthenticated, user, setUserData, isUserUpdating} = useMoralis();
     const Web3Api = useMoralisWeb3Api();
 
     let account;
@@ -37,7 +37,7 @@ const Home = () => {
         const name = usersFirstName.current.value;
         console.log(name);
 
-        setToggleNameInput(false);
+        setToggleNameInput(!toggleNameInput);
         setUsersName(name);
         setUserData({
         username: name

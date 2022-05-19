@@ -8,20 +8,40 @@ const Explore = () => {
     const [count, setCount] = useState(0);
     const [nftObject, setnftObject] = useState({});
     const [nftArray, setNftArray] = useState([]);
-    // 0x4C4a07F737Bf57F6632B6CAB089B78f62385aCaE
+    const [artist, setArtist] = useState('0xE93C817Ed22EA606B2a948C1536013013F34DBB9');
+    //* 0xE93C817Ed22EA606B2a948C1536013013F34DBB9 !!!!!!!!!!!!GOOD!!!!!!!!!!!!!
+    //* 0x2995EdF91516499909a5b2565F95F3CD7F8e5Beb !!!!!!!!!! MINE !!!!!!!!!!!!!!
+    //* 0xa7a26b29d4530Ac7EAAFd8238474979508eE2D27 !!!!!!!!!! GOOD Rate limit 6 !!!!!!!!!
     const fetchAllTokenIds = async () => {
         const options = {
-            address: '0x4C4a07F737Bf57F6632B6CAB089B78f62385aCaE',
-            chain: 'ropsten'
+            address: artist,
+            chain: 'ropsten',
+            limit: 6
         }
 
         const NFTs = await Web3Api.token.getAllTokenIds(options);
         let total = NFTs.result.length;
-        console.log(total);
+        
         setCount(total);
-        setNftArray([NFTs.result[0]])
-        console.log(NFTs.result);
+        // console.log(total);
+
+        setNftArray([...NFTs.result])
+        // console.log(NFTs.result);
+
+        setnftObject(NFTs)
+        // console.log(nftObject)
     }
+
+    const handleSelectOption = (e) => {
+        e.preventDefault();
+        console.log(e.target.value);
+        setArtist(e.target.value);
+        fetchAllTokenIds();
+    }
+
+    useEffect(()=> {
+        console.log('this is from useEffect artist: ', artist)
+    }, [artist])
 
     useEffect(() => {
         fetchAllTokenIds()
@@ -29,12 +49,22 @@ const Explore = () => {
     }, [])
 
     return(
-        <div>
-            <h5>Your total NFT count is {count}</h5>
+        <div className='explore'>
+            <h4>Your total NFT count is {count}</h4>
+            <h5>Select an artist</h5>
+            <div className='select'>
+                <select className="form-select" aria-label="Default select" onChange={handleSelectOption}>
+                    {/* <option selected>Select Artist</option> */}
+                    <option value="0xE93C817Ed22EA606B2a948C1536013013F34DBB9">Mutant Ape Yacht Club</option>
+                    <option value="0x2995EdF91516499909a5b2565F95F3CD7F8e5Beb">Cool Cat</option>
+                    <option value="0xa7a26b29d4530Ac7EAAFd8238474979508eE2D27">Hodge Podge</option>
+                </select>
+            </div>
             {nftObject? 
                 <div className='card-row'>
                 {nftArray.map((items) => {
-                    console.log(items)
+                    // eslint-disable-next-line no-lone-blocks
+                    {/* console.log(items) */}
                     const {metadata, token_id, token_uri} = items
                     const metaData = JSON.parse(metadata)
                     

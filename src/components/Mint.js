@@ -1,23 +1,23 @@
 import React, {useEffect, useRef, useState} from 'react';
-import { useMoralis, useMoralisFile, useMoralisWeb3Api, useMoralisWeb3ApiCall} from "react-moralis";
+import { useMoralis } from "react-moralis";
 import Moralis from 'moralis';
 import {abi} from '../abi/abi'
-
 
 const CONTRACT_ADDRESS = process.env.REACT_APP_CONTRACT_ADDRESS;
 // console.log(CONTRACT_ADDRESS);
 
-
 const Mint = () => {
-    const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, useWeb3ExecuteFunction, user} =
+    const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, user} =
     useMoralis();
 
     const [file, setFile] = useState(null);
+    const [toggleSuccess, setToggleSuccess] = useState(false);
+    const [ropstenLink, setRopstenLink] = useState('')
 
     const name = useRef();
     const description = useRef();
     const imgHash = useRef(file);
-    const { native } = useMoralisWeb3Api();
+    // const { native } = useMoralisWeb3Api();
 
     const ABI = abi;
     // console.log(ABI);
@@ -30,6 +30,7 @@ const Mint = () => {
         let finalImgFile = await imgFile.saveIPFS();
         console.log(finalImgFile._url);
         console.log(finalImgFile.ipfs(), finalImgFile.hash());
+
         const hash = await finalImgFile.hash()
    
         const metaData = {
@@ -50,6 +51,7 @@ const Mint = () => {
         const txt = await mintToken(metaDataURI).then(() => {
             console.log('notify')
         });
+        console.log(txt)
         console.log(JSON.stringify(finalFile));
     }
 
@@ -63,20 +65,29 @@ const Mint = () => {
             params: {to: account, uri: token_uri}
         }
 
+        // eslint-disable-next-line no-unused-vars
         const tx = await Moralis.executeFunction({...options}).then((response, err) => {
             if(err) {
                 console.log(err)
             }
             console.log('ropten etherscan here: \n', 'https://ropsten.etherscan.io/tx/'+response.hash);
-
+            
+            if(response) {
+                setToggleSuccess(true)
+                setRopstenLink('https://ropsten.etherscan.io/tx/'+response.hash);
+                setTimeout(() => {
+                    setToggleSuccess(!toggleSuccess)
+                },3000)
+            }
+            console.log(response)
         });
-        console.log(tx);
+        
        
     }
 
-    function done() {
+    // function done() {
 
-    }
+    // }
     
 
     
@@ -88,22 +99,35 @@ const Mint = () => {
 
 
     return(
-        <div className='mint'>
-            <h2 id='mint-title'>Sea Horse Minter</h2>
-            <form>
-            <input className="form-control" type="text" placeholder="name" ref={name}/>
-            <br />
-            <input className="form-control" type="text" placeholder="description" ref={description}/>
-            
-            <div className="form-group">
-            <label htmlFor="img-file" id="img-file">Please upload your NFT img file below</label>
-            <input type="file" className="form-control-file" id="exampleFormControlFile1" onChange={ (e) => {
-                console.log(e.target.files[0])
-                setFile(e.target.files[0])}} ref={imgHash}/>
+        <div>
+            {toggleSuccess? 
+            <div className="alert alert-success" role="alert">
+              <div>You have succesfully minted</div>
+              <div>
+                    <a href={ropstenLink} target='_blank' rel='noreferrer'>
+                        {ropstenLink}
+                    </a>
+                </div>
             </div>
+            
+            : <></>}
+            <div className='mint'>
+                <h2 id='mint-title'>Sea Horse Minter</h2>
+                <form>
+                <input className="form-control" type="text" placeholder="name" ref={name}/>
+                <br />
+                <input className="form-control" type="text" placeholder="description" ref={description}/>
                 
-                <button className='btn glowing' id='mint-button' onClick={submit}>Mint</button>
-            </form>
+                <div className="form-group">
+                <label htmlFor="img-file" id="img-file">Please upload your NFT img file below</label>
+                <input type="file" className="form-control-file" id="exampleFormControlFile1" onChange={ (e) => {
+                    console.log(e.target.files[0])
+                    setFile(e.target.files[0])}} ref={imgHash}/>
+                </div>
+                    
+                    <button className='btn glowing' id='mint-button' onClick={submit}>Mint</button>
+                </form>
+            </div>
         </div>
     )
 }
