@@ -37,6 +37,16 @@ button {
  color: aliceblue;
 }
 
+.form-select {
+  border-radius: 5px;
+  width: 200px;
+  padding: 2px;
+  background: linear-gradient(0deg, rgb(157, 187, 251), #444444);
+  color: rgb(230, 241, 241);
+  animation: glowings 4300ms infinite;
+  transition: all 0.2s ease-in-out;
+}
+
 #img-file {
   color: white;
   margin-top: 3%;
@@ -91,6 +101,20 @@ button {
     box-shadow: 0 0 5px #2ba805;
   }
 }
+@keyframes glowings {
+  0% {
+    background-color: #12c6ef;
+    box-shadow: 0 0 5px #12c6ef;
+  }
+  50% {
+    background-color: #12c6ef;
+    box-shadow: 0 0 20px #12c6ef;
+  }
+  100% {
+    background-color: #0088ff;
+    box-shadow: 0 0 5px #0088ff;
+  }
+}
 
 
 #name {
@@ -106,25 +130,6 @@ button {
   color: aliceblue;
 }
 
-.select *,
-*::before,
-*::after{
-  box-sizing:  border-box;
-}
-
-select {
-  
-  appearance: none;
-  background-color: transparent;
-  border: none;
-  padding: 0 1em 0 0;
-  margin: 0;
-  width: 100%;
-  font-family: inherit;
-  font-size: inherit;
-  cursor: inherit;
-  line-height: inherit;
-}
 
 #welcome-div {
   position: relative;

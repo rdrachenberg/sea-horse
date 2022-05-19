@@ -23,3 +23,8 @@ html #root{
   height: 100%;
   z-index: -1;
 }
+:root {
+  --select-border: #777;
+  --select-focus: blue;
+  --select-arrow: var(--select-border);
+}

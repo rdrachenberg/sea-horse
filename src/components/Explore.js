@@ -32,9 +32,10 @@ const Explore = () => {
         // console.log(nftObject)
     }
 
-    const handleSelectOption = (e) => {
-        e.preventDefault();
+    const handleSelectOption = async (e) => {
+        
         console.log(e.target.value);
+        await e.target.value;
         setArtist(e.target.value);
         fetchAllTokenIds();
     }
@@ -55,9 +56,9 @@ const Explore = () => {
             <div className='select'>
                 <select className="form-select" aria-label="Default select" onChange={handleSelectOption}>
                     {/* <option selected>Select Artist</option> */}
-                    <option value="0xE93C817Ed22EA606B2a948C1536013013F34DBB9">Mutant Ape Yacht Club</option>
-                    <option value="0x2995EdF91516499909a5b2565F95F3CD7F8e5Beb">Cool Cat</option>
-                    <option value="0xa7a26b29d4530Ac7EAAFd8238474979508eE2D27">Hodge Podge</option>
+                    <option onChange={handleSelectOption} value="0xE93C817Ed22EA606B2a948C1536013013F34DBB9">Mutant Ape Yacht Club</option>
+                    <option onChange={handleSelectOption} value="0x2995EdF91516499909a5b2565F95F3CD7F8e5Beb">Cool Cat</option>
+                    <option onChange={handleSelectOption} value="0xa7a26b29d4530Ac7EAAFd8238474979508eE2D27">Hodge Podge</option>
                 </select>
             </div>
             {nftObject? 
