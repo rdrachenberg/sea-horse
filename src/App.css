@@ -69,7 +69,9 @@ button {
   margin-top: 2%;
   padding: 20px;
   max-width: 500px;
-  background: linear-gradient(0deg, rgb(27, 86, 215), #444444);
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
   border-radius: 15px;
   box-shadow: 3px 5px 4px 5px #dedede;
 }
@@ -144,6 +146,8 @@ button {
   margin-left: auto;
   margin-right: auto;
   margin-top: 10px;
+  box-shadow: 3px 5px 4px 5px #dedede;
+  margin-bottom: 10px;
 }
 #welcome-div-hidden {
   position: relative;
@@ -155,9 +159,11 @@ button {
   padding: 5px;
   margin-left: 0.5%;
   margin-top: 0.5%;
+  box-shadow: 1px 3px 2px 3px #dedede;
 }
 
 .welcome-text {
   align-items: flex-start;
   text-align: left;
 }
+

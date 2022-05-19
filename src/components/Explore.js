@@ -8,16 +8,22 @@ const Explore = () => {
     const [count, setCount] = useState(0);
     const [nftObject, setnftObject] = useState({});
     const [nftArray, setNftArray] = useState([]);
-    const [artist, setArtist] = useState('0xE93C817Ed22EA606B2a948C1536013013F34DBB9');
+    const [artist, setArtist] = useState('');
     //* 0xE93C817Ed22EA606B2a948C1536013013F34DBB9 !!!!!!!!!!!!GOOD!!!!!!!!!!!!!
     //* 0x2995EdF91516499909a5b2565F95F3CD7F8e5Beb !!!!!!!!!! MINE !!!!!!!!!!!!!!
     //* 0xa7a26b29d4530Ac7EAAFd8238474979508eE2D27 !!!!!!!!!! GOOD Rate limit 6 !!!!!!!!!
-    const fetchAllTokenIds = async () => {
+    const fetchAllTokenIds = async (passedContract) => {
+        console.log('this is the artist coming in here \n' , artist)
+        setArtist(passedContract);
+        await artist
+        
         const options = {
             address: artist,
             chain: 'ropsten',
             limit: 6
         }
+
+        
 
         const NFTs = await Web3Api.token.getAllTokenIds(options);
         let total = NFTs.result.length;
@@ -37,15 +43,15 @@ const Explore = () => {
         console.log(e.target.value);
         await e.target.value;
         setArtist(e.target.value);
-        fetchAllTokenIds();
+        fetchAllTokenIds(e.target.value);
     }
 
-    useEffect(()=> {
-        console.log('this is from useEffect artist: ', artist)
-    }, [artist])
+    // useEffect(()=> {
+    //     console.log('this is from useEffect artist: ', artist)
+    // }, [artist])
 
     useEffect(() => {
-        fetchAllTokenIds()
+        fetchAllTokenIds('0xE93C817Ed22EA606B2a948C1536013013F34DBB9')
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -56,9 +62,9 @@ const Explore = () => {
             <div className='select'>
                 <select className="form-select" aria-label="Default select" onChange={handleSelectOption}>
                     {/* <option selected>Select Artist</option> */}
-                    <option onChange={handleSelectOption} value="0xE93C817Ed22EA606B2a948C1536013013F34DBB9">Mutant Ape Yacht Club</option>
-                    <option onChange={handleSelectOption} value="0x2995EdF91516499909a5b2565F95F3CD7F8e5Beb">Cool Cat</option>
-                    <option onChange={handleSelectOption} value="0xa7a26b29d4530Ac7EAAFd8238474979508eE2D27">Hodge Podge</option>
+                    <option value="0xE93C817Ed22EA606B2a948C1536013013F34DBB9">Mutant Ape Yacht Club</option>
+                    <option value="0x2995EdF91516499909a5b2565F95F3CD7F8e5Beb">Cool Cat</option>
+                    <option value="0xa7a26b29d4530Ac7EAAFd8238474979508eE2D27">Hodge Podge</option>
                 </select>
             </div>
             {nftObject? 

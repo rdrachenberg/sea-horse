@@ -37,7 +37,7 @@ const Home = () => {
         const name = usersFirstName.current.value;
         console.log(name);
 
-        setToggleNameInput(!toggleNameInput);
+        setToggleNameInput(true);
         setUsersName(name);
         setUserData({
         username: name

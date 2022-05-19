@@ -3,9 +3,8 @@ import { useMoralis } from "react-moralis";
 
 
 const Navbar = () => {
-    const {authenticate, isAuthenticated, isAuthenticating, user, account ,logout } = useMoralis();
-  
-
+    const {authenticate, isAuthenticated, isAuthenticating, user, logout } = useMoralis();
+    
   useEffect(() => {
     if(isAuthenticated){
       console.log('is authenticated');
@@ -14,6 +13,7 @@ const Navbar = () => {
 
   const login = async () => {
     if(!isAuthenticated) {
+      
       await authenticate({signingMessage: 'Welcome to Sea Horse. You must sign this message to authenticate your awesome self!'})
       .then(function(user) {
         

@@ -99,7 +99,7 @@ const Mint = () => {
 
 
     return(
-        <div>
+        <div className='body'>
             {toggleSuccess? 
             <div className="alert alert-success" role="alert">
               <div>You have succesfully minted</div>
