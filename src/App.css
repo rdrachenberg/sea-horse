@@ -132,6 +132,14 @@ button {
   color: aliceblue;
 }
 
+#transfer-button {
+  width: 100%;
+}
+
+.transfer {
+  justify-content: center;
+  margin: auto;
+}
 
 #welcome-div {
   position: relative;

@@ -10,7 +10,8 @@ import { useMoralis } from "react-moralis";
 import Navbar  from "./components/Navbar";
 import Home from "./components/Home";
 import Mint from './components/Mint';
-import Explore from './components/Explore'
+import Explore from './components/Explore';
+import Transfer from './components/Transfer';
 import Footer from "./components/Footer";
 
 
@@ -39,6 +40,9 @@ function App() {
               </Route>
               <Route exact path='/explore'>
                 <Explore />
+              </Route>
+              <Route exact path='/transfer'>
+                <Transfer />
               </Route>
             </Switch>
             

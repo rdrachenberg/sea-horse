@@ -26,6 +26,15 @@ const Cards = () => {
         // console.log(NFTs)
     }
 
+    const handleTransferClick = (e, name, token_id, description) => {
+        // e.preventDefault();
+        // console.log(e)
+        // console.log(e.currentTarget)
+        // console.log(e.target.vaule)
+        // console.log(name)
+
+    }
+
     useEffect(() => {
         getNFTs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -59,7 +68,8 @@ const Cards = () => {
                                 <h5 className="card-title">{name}</h5>
                                 <p className="card-text">{token_id}</p>
                                 <p className="card-text">{description}</p>
-                                <a href={token_uri} className="btn btn-primary" id='meta-data-button' target='_blank' rel='noreferrer'>See Metadata</a>
+                                <a href={token_uri} className="btn btn-primary" id='meta-data-button' target='_blank' rel='noreferrer'>Metadata</a>
+                                <a href= {'/transfer?name=' +name+'&token_id=' + token_id + '&description=' + description} className='btn glowing' id='mint-button' rel='noreferrer' onClick={handleTransferClick({name: name, token_id: token_id, description: description})}>Transfer</a>
                             </div>
                             <br/>
                         </div>

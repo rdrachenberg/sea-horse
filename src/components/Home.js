@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react';
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import Cards from "./Cards";
+import BigNumber from 'bignumber.js';
 // import Moralis from 'moralis';
 
 const Home = () => {
@@ -21,7 +22,7 @@ const Home = () => {
     const usersFirstName = useRef('');
 
     if(isAuthenticated) {
-        account = (user.get('ethAddress'))
+        account = (user.get('ethAddress').toString())
     }
 
     if(!user)  {
@@ -52,8 +53,21 @@ const Home = () => {
         }
         
         const balance = await Web3Api.account.getNativeBalance(options);
-        setAcctBalance(balance.balance)
-        console.log(balance)
+        
+        let str = balance.balance * ('1e' + 18).toLocaleString();
+        let num = Number(str);
+        let bigNum = new BigNumber(num);
+        let formatBigNumber = [...bigNum.c.slice(0, -1).toString()];
+        formatBigNumber.splice(1, 0, '.').join('');
+        console.log(formatBigNumber.join(''));
+        // num = num.toPrecision(14)
+        let formmatedBigNumber = formatBigNumber.join('');
+        
+        console.log(typeof formmatedBigNumber);
+        console.log(formmatedBigNumber)
+
+        setAcctBalance(formmatedBigNumber + ' ETH');
+        
     }
 
     useEffect(() => {
@@ -109,8 +123,8 @@ const Home = () => {
               <div className="row">
               <div id='welcome-div' onClick={handleAccountInfoClick}>
                 <h5 className="welcome-text">Your user id is: {user.id}</h5>
-                <h5 className="welcome-text">Your eth account is: {account}</h5>
-                <h5 className="welcome-text">Your balance is: {acctBalance}</h5>
+                <h5 className="welcome-text">Your eth account is: <a style={{color: 'white', fontWeight: 'bolder'}} href={'https://ropsten.etherscan.io/address/'+account} target='_blank' rel='noreferrer'>{account}</a></h5>
+                <h5 className="welcome-text">Your balance is: <a style={{color: 'white', fontWeight: 'bolder'}} href='/'>{acctBalance}</a></h5>
               </div>
               </div>
               :
