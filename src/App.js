@@ -12,6 +12,7 @@ import Home from "./components/Home";
 import Mint from './components/Mint';
 import Explore from './components/Explore';
 import Transfer from './components/Transfer';
+import MintFees from "./components/MintFees";
 import Footer from "./components/Footer";
 
 
@@ -44,8 +45,10 @@ function App() {
               <Route exact path='/transfer'>
                 <Transfer />
               </Route>
+              <Route exact path='/mint-fees'>
+                <MintFees />
+              </Route>
             </Switch>
-            
             </div>
           : 
             <div className='login-message'>

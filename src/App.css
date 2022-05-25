@@ -14,6 +14,8 @@ button {
 
 .card-img-top {
   min-height: 300px;
+  max-height: 300px;
+  object-fit: fill;
 }
 
 .card-row {
@@ -146,6 +148,26 @@ button {
   }
 }
 
+#mint-button-collect {
+  background-color: #000000;
+  background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
+  color: aqua;
+  border-radius: 20px; 
+  animation: glowing 4300ms infinite;
+  transition: all 0.2s ease-in-out;
+  width: 38%;
+  
+}
+
+
+#mint-fees-img {
+  border-radius: 25px;
+  max-height: 300px;
+  max-width: 480px;
+  box-shadow: 3px 5px 4px 5px #dedede;
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
 
 #name {
   max-width: 500px;
@@ -194,7 +216,18 @@ button {
 .transfer {
   justify-content: center;
   margin: auto;
+  overflow: hidden;
   
+}
+
+#transfer-img {
+ object-fit: fill;
+
+}
+
+.transfer-container {
+  position: relative;
+
 }
 
 #welcome-div {

@@ -62,9 +62,10 @@ const Mint = () => {
             contractAddress: CONTRACT_ADDRESS,
             functionName: "safeMint",
             abi: ABI,
+            msgValue: Moralis.Units.ETH(0.01),
             params: {to: account, uri: token_uri}
         }
-
+        console.log(options)
         // eslint-disable-next-line no-unused-vars
         const tx = await Moralis.executeFunction({...options}).then((response, err) => {
             if(err) {

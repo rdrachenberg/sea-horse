@@ -25,12 +25,7 @@ const Transfer = (props) => {
 
     const [index, setIndex] = useState('');
     const [confirmations, setConfirmations] = useState('');
-    // const {token_id} = useParams();
-    // const {description} = useParams();
-    // console.log(searchParams.match.params);
-    // name.get('name');
-    // searchParams.get('token_id');
-    // searchParams.get('description');
+
     const searchParams = new URLSearchParams(params.search)
     
     const getID = () => {
@@ -62,18 +57,8 @@ const Transfer = (props) => {
             // console.log(p);
         }
         
-    }
+    }    
     
-    
-    // console.log(params.name);
-    // console.log(params.token_id);
-    // console.log(params.description);
-
-    
-
-    // const {fetch, error, isFetching} = useWeb3Transfer()
-    
-
     useEffect(() => {
         // console.log(props)
         getID();
@@ -148,7 +133,10 @@ const Transfer = (props) => {
                 <div>
                     <h2>Transfer your NFT</h2>
                     <div className='card' style={{width: '18rem', maxWidth:'18rem', padding: '10px', margin: 'auto'}}>
-                        <img className='card-img-top' src={nftImage} alt='nft file img' />
+                        <div className='transfer-container'>
+                        <img className='card-img-top' id='transfer-img' src={nftImage} alt='nft file img' />
+                        </div>
+                        
                         <div className='card-body'>
                             <h5>{nftName}</h5>
                             <p>Description: {nftDescription}</p>
