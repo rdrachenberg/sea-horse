@@ -1,14 +1,12 @@
-import React, {useEffect, useState, useRef} from 'react';
-
-// import Moralis from 'moralis';
+import React from 'react';
 
 const Footer = () => {
 
     return (
         <div className='navbar fixed-bottom navbar-dark bg-dark' id='footer'>
-            <p>Home</p>
-            <p>Mint</p>
-            <p>Explore</p>
+            <a href='/'><p>Home</p></a>
+            <a href='/mint'><p>Mint</p></a>
+            <a href='/explore'><p>Explore</p></a>
         </div>
     )
 }

@@ -5,8 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
 }
+
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
@@ -28,15 +28,18 @@ html {
   background: linear-gradient(-45deg, hsl(196, 40%, 91%),hsl(196, 21%, 97%));
   height: 100%;
   z-index: -1;
+  
 }
 
 html #root{
   background: linear-gradient(-45deg, hsl(196, 40%, 91%),hsl(196, 21%, 97%));
   height: 100%;
   z-index: -1;
+  padding-bottom: 70px;
 }
 :root {
   --select-border: #777;
   --select-focus: blue;
   --select-arrow: var(--select-border);
+  
 }

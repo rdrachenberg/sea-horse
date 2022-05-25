@@ -69,7 +69,7 @@ const Cards = () => {
                                 <p className="card-text">{token_id}</p>
                                 <p className="card-text">{description}</p>
                                 <a href={token_uri} className="btn btn-primary" id='meta-data-button' target='_blank' rel='noreferrer'>Metadata</a>
-                                <a href= {'/transfer?name=' +name+'&token_id=' + token_id + '&description=' + description} className='btn glowing' id='mint-button' rel='noreferrer' onClick={handleTransferClick({name: name, token_id: token_id, description: description})}>Transfer</a>
+                                <a href= {'/transfer?name=' +name+'&token_id=' + token_id + '&description=' + description + '&image=' + image} className='btn glowing' id='mint-button' rel='noreferrer' onClick={handleTransferClick({name: name, token_id: token_id, description: description})}>Transfer</a>
                             </div>
                             <br/>
                         </div>

@@ -100,17 +100,27 @@ const Mint = () => {
 
     return(
         <div className='body'>
-            {toggleSuccess? 
-            <div className="alert alert-success" role="alert">
-              <div>You have succesfully minted</div>
-              <div>
-                    <a href={ropstenLink} target='_blank' rel='noreferrer'>
-                        {ropstenLink}
-                    </a>
+            {toggleSuccess?
+            <div>
+                <div className="alert alert-success" role="alert">
+                <div>You have succesfully minted a NFT</div>
+                <div>Check out the transaction link below</div>
+                <div>
+                        <a href={ropstenLink} target='_blank' rel='noreferrer'>
+                            {ropstenLink}
+                        </a>
+                    </div>
                 </div>
+                <div className='mint'>
+                <h2 id='mint-title'>Sea Horse Minter</h2>
+                <form>
+                    <a href='/mint'>
+                        <button className='btn glowing' id='mint-button'>Mint Another</button>
+                    </a>
+                </form>
             </div>
-            
-            : <></>}
+            </div>
+            : 
             <div className='mint'>
                 <h2 id='mint-title'>Sea Horse Minter</h2>
                 <form>
@@ -128,6 +138,8 @@ const Mint = () => {
                     <button className='btn glowing' id='mint-button' onClick={submit}>Mint</button>
                 </form>
             </div>
+            }
+            
         </div>
     )
 }

@@ -8,12 +8,23 @@ button {
 
 .card {
   margin: 20px;
+  /* height: 570px; */
   /* flex-direction: row; */
+}
+
+.card-img-top {
+  min-height: 300px;
 }
 
 .card-row {
   display: flex;
   flex-wrap: wrap;
+}
+
+.card-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #eth-account {
@@ -53,10 +64,27 @@ button {
   margin-bottom: 3%;
 }
 
+#login {
+  border-style: solid;
+  border-color: #1b71e2;
+}
+
 .login-message {
   margin-left: auto;
   margin-right: auto;
   margin-top: 2%;
+}
+
+#logo {
+  margin-right: 5%;
+  max-height: '25px';
+  border-radius: '3px';
+  padding: '2px'
+}
+
+#logout {
+  border-style: solid;
+  border-color: #23a6d5;
 }
 
 #meta-data-button {
@@ -132,13 +160,41 @@ button {
   color: aliceblue;
 }
 
+.navbar-brand {
+  margin-left: 5px;
+}
+
+.overlay {
+  position: relative;
+  background-color: #000000;
+  color: red;
+  z-index: 1;
+}
+
+#sold {
+  position: absolute;
+  margin: auto;
+  margin-top: 4px;
+  margin-right: 120px;
+  margin-left: -43px;
+  background-color: #000000;
+  padding: 10px;
+  transform: translateX(50%) rotate(-15deg);
+}
+
+#sold-img {
+  z-index: -1;
+}
+
 #transfer-button {
   width: 100%;
+  max-height: 10px;
 }
 
 .transfer {
   justify-content: center;
   margin: auto;
+  
 }
 
 #welcome-div {

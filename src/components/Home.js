@@ -56,15 +56,19 @@ const Home = () => {
         
         let str = balance.balance * ('1e' + 18).toLocaleString();
         let num = Number(str);
+
         let bigNum = new BigNumber(num);
         let formatBigNumber = [...bigNum.c.slice(0, -1).toString()];
+        
         formatBigNumber.splice(1, 0, '.').join('');
-        console.log(formatBigNumber.join(''));
+        // console.log(formatBigNumber.join(''));
         // num = num.toPrecision(14)
         let formmatedBigNumber = formatBigNumber.join('');
-        
-        console.log(typeof formmatedBigNumber);
-        console.log(formmatedBigNumber)
+        // console.log(typeof formmatedBigNumber);
+        // console.log(formmatedBigNumber)
+        if(formmatedBigNumber === '.') {
+            formmatedBigNumber = '0'
+        }
 
         setAcctBalance(formmatedBigNumber + ' ETH');
         

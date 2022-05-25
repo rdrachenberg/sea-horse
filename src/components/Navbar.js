@@ -1,5 +1,6 @@
-import React, {useEffect, setState} from 'react';
+import React, {useEffect} from 'react';
 import { useMoralis } from "react-moralis";
+import logo from '../logo/seahorse.jpg';
 
 
 const Navbar = () => {
@@ -12,15 +13,13 @@ const Navbar = () => {
   }, [isAuthenticated]);
 
   const login = async () => {
+    
     if(!isAuthenticated) {
-      
       await authenticate({signingMessage: 'Welcome to Sea Horse. You must sign this message to authenticate your awesome self!'})
       .then(function(user) {
-        
         // console.log('Logged in user: ', user);
         // console.log(user.get("ethAddress"));
         // console.log('here is the account var ',account)
-        
       })
       .catch(function(err) {
         console.log(err);
@@ -32,8 +31,12 @@ const Navbar = () => {
     await logout();
     console.log('You have been logged out!')
   }
-    return(
+
+  return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark" id='navbar'>
+        <a href='/'>
+          <img src={logo} id='logo' style={{maxHeight: '30px', borderRadius: '6px', padding: '2px'}} alt='logo'/>
+        </a>
         <a className="navbar-brand" href="/">
         Sea Horse
         </a>
@@ -75,7 +78,7 @@ const Navbar = () => {
     : <></>}
     {isAuthenticated? 
       <div>
-        <button onClick={logOut} disabled={isAuthenticating}> Logout ✖️</button>
+        <button id='logout' onClick={logOut} disabled={isAuthenticating}> Logout ✖️</button>
       </div>
       : <button id='login' onClick={login}> 🦊 MetaMask Login </button>}
       
