@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import Moralis from 'moralis';
 import {abi} from '../abi/abi'
@@ -9,7 +9,7 @@ const CONTRACT_ADDRESS = process.env.REACT_APP_CONTRACT_ADDRESS;
 const contract = CONTRACT_ADDRESS;
 
 const MintFees = () => {
-    const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, user} =
+    const {enableWeb3, isAuthenticated, user} =
     useMoralis();
 
     const Web3Api = useMoralisWeb3Api();
@@ -18,6 +18,7 @@ const MintFees = () => {
     const [toggleSuccess, setToggleSuccess] = useState(false);
 
     const [acctBalance, setAcctBalance] = useState(0);
+    const [ropstenLink, setRopstenLink] = useState('')
 
     const fetchNativeBalance = async () => {
         const options = {
@@ -26,20 +27,24 @@ const MintFees = () => {
         }
         
         const balance = await Web3Api.account.getNativeBalance(options);
-        
+        // console.log(balance);
         let str = balance.balance * ('1e' + 18).toLocaleString();
+        // console.log(str);
         let num = Number(str);
+        // console.log(num);
 
         let bigNum = new BigNumber(num);
-        let formatBigNumber = [...bigNum.c.slice(0, -1).toString()];
+        // console.log(bigNum)
+        let formatBigNumber = [...bigNum.c.toString()];
+        // console.log(formatBigNumber);
         
-        formatBigNumber.splice(1, 0, '.').join('');
+        formatBigNumber.splice(0, 0, '0.0').join('');
+        // console.log(formatBigNumber);
         // console.log(formatBigNumber.join(''));
-        // num = num.toPrecision(14)
         let formmatedBigNumber = formatBigNumber.join('');
         // console.log(typeof formmatedBigNumber);
         // console.log(formmatedBigNumber)
-        if(formmatedBigNumber === '.') {
+        if(formmatedBigNumber === '0.0') {
             formmatedBigNumber = '0'
         }
 
@@ -71,9 +76,11 @@ const MintFees = () => {
             if(res) {
                 console.log(res)
                 setToggleSuccess(true);
+                setRopstenLink('https://ropsten.etherscan.io/tx/'+res.hash)
             }
 
         })
+        console.log(tx);
     }
 
     useEffect(() => {
@@ -96,6 +103,9 @@ const MintFees = () => {
                 <div className="alert alert-success" role="alert">
                     <div>You have collected your minting fees of {acctBalance}</div>
                     <div>Check out the transaction link below</div>
+                    <div>
+                        <a href={ropstenLink} target='_blank' rel='noreferrer'>{ropstenLink}</a>
+                    </div>
                 </div>
                     <div>
                         <h2>Collected successfully</h2>
@@ -108,7 +118,6 @@ const MintFees = () => {
                     <h5>Only the owner of the mint can claim minting fees.</h5>
                 </div>
             }
-            
 
             {toggleSuccess? 
                 <div>
@@ -125,8 +134,7 @@ const MintFees = () => {
                         <button className='btn glowing' id='mint-button-collect' onClick={collect}>Collect </button>
                     </div>
                </div>
-            }
-            
+            }      
         </div>
     )
 }
