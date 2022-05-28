@@ -112,6 +112,7 @@ const Mint = () => {
                         </a>
                     </div>
                 </div>
+                
                 <div className='mint'>
                 <h2 id='mint-title'>Sea Horse Minter</h2>
                 <form>
@@ -122,22 +123,54 @@ const Mint = () => {
             </div>
             </div>
             : 
-            <div className='mint'>
-                <h2 id='mint-title'>Sea Horse Minter</h2>
-                <form>
-                <input className="form-control" type="text" placeholder="name" ref={name}/>
-                <br />
-                <input className="form-control" type="text" placeholder="description" ref={description}/>
-                
-                <div className="form-group">
-                <label htmlFor="img-file" id="img-file">Please upload your NFT img file below</label>
-                <input type="file" className="form-control-file" id="exampleFormControlFile1" onChange={ (e) => {
-                    console.log(e.target.files[0])
-                    setFile(e.target.files[0])}} ref={imgHash}/>
-                </div>
+            <div>
+                <h2 id='welcome-minter'>Welcome to your minter</h2>
+                <div className='mint'>
+                    <h2 id='mint-title'>Sea Horse Minter</h2>
+                    <form>
+                    <input className="form-control" type="text" placeholder="name" ref={name}/>
+                    <br />
+                    <input className="form-control" type="text" placeholder="description" ref={description}/>
                     
-                    <button className='btn glowing' id='mint-button' onClick={submit}>Mint</button>
-                </form>
+                    <div className="form-group">
+                    <label htmlFor="img-file" id="img-file">Please upload your NFT img file below</label>
+                    <input type="file" className="form-control-file" id="exampleFormControlFile1" onChange={ (e) => {
+                        console.log(e.target.files[0])
+                        setFile(e.target.files[0])}} ref={imgHash}/>
+                    </div>
+                        
+                        <button className='btn glowing' id='mint-button' onClick={submit}>Mint</button>
+                    </form>
+                </div>
+                <div className='mint-bullets-container'>
+                    <div className='row'>
+                        <div className='mint-background col'>
+                            <p className='mint-bullets'>Stored on IPFS</p>
+                        </div>
+                        <div className='mint-background col'>
+                            <p className='mint-bullets'>0.01 ETH mint fee</p>
+                        </div>
+                        <div className='mint-background col'>
+                            <p className='mint-bullets col'>Must be a .jpg, .png, or .gif</p>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='mint-background col'>
+                            <p className='mint-bullets col'>Create NFT's On-Demand</p>
+                        </div>
+                        <div className='mint-background col'>
+                            <p className='mint-bullets'>Mint your very own unique NFT</p>
+                        </div>
+                        <div className='mint-background col'>
+                            <p className='mint-bullets col'>Make your collection scarce</p>
+                        </div> 
+                    </div>
+                    <div className='row'>
+                        
+                    </div>
+                    
+                    
+                </div>  
             </div>
             }
             

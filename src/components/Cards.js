@@ -62,8 +62,7 @@ const Cards = () => {
                     
                     return (
                         <div className="card" key={token_id} style={{width: '18rem', maxWidth:'18rem', padding: '10px', margin: '10px'}}>
-                        
-                        <img className="card-img-top" src={image} alt="Card img cap" style={{maxHeight: "300px"}} />
+                            <img className="card-img-top" src={image} alt="Card img cap" style={{maxHeight: "300px"}} />
                             <div className="card-body">
                                 <h5 className="card-title">{name}</h5>
                                 <p className="card-text">{token_id}</p>

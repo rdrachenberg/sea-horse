@@ -89,6 +89,8 @@ button {
   border-color: #23a6d5;
 }
 
+
+
 #meta-data-button {
   background: linear-gradient(0deg, rgb(27, 86, 215), #444444);
   border-radius: 20px;
@@ -97,6 +99,7 @@ button {
 .mint {
   margin: auto;
   margin-top: 2%;
+  margin-bottom: 7%;
   padding: 20px;
   max-width: 500px;
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
@@ -106,8 +109,44 @@ button {
   box-shadow: 3px 5px 4px 5px #dedede;
 }
 
+.mint-background {
+  background-color: #011428;
+  border-radius: 25px;
+  max-width: 295px;
+  padding: 3px;
+  padding-left: 20px;
+  position: relative;
+  margin: auto;
+  margin-bottom: 1%;
+  margin-top: 1%;
+  flex-direction: column;
+  font-weight: bolder;
+  border-style: solid;
+  border-color: #1b71e2;
+  border-width: 2px;
+  box-shadow: 3px 5px 4px 5px #dedede;
+}
+
+.mint-bullets {
+  color: transparent;
+  margin-bottom: 1%;
+  margin-top: 1%;
+  text-align: center;
+  font-weight: bolder;
+  flex-direction: column;
+  background-image: linear-gradient(60deg, #8ac1ff, #f9a768);
+  background-clip: text;
+  
+  
+}
+
+.mint-bullets-container {
+  flex-wrap: wrap;
+}
+
 #mint-title {
   color: white;
+  margin-bottom: 5%;
 }
 
 #mint-button {
@@ -257,6 +296,10 @@ button {
   margin-left: 0.5%;
   margin-top: 0.5%;
   box-shadow: 1px 3px 2px 3px #dedede;
+}
+
+#welcome-minter {
+  margin-top: 2%;
 }
 
 .welcome-text {
