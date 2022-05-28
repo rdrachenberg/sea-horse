@@ -94,8 +94,12 @@ const Home = () => {
                 setToggleUserData(false)
             }, 8000)
 
-        //    console.log(user)
-           setUsersName(user.attributes.username)
+           console.log(user);
+
+          
+          setUsersName(user.attributes.username)
+          
+          
 
         }
        
@@ -160,9 +164,7 @@ const Home = () => {
             </div>
           </div>
           : 
-          <div className='login-message'>
-          <h2> Please login to interact with Sea Horse</h2>
-          </div>
+          <></>
           }
           
         </div>

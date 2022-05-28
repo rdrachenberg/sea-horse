@@ -12,6 +12,10 @@ button {
   /* flex-direction: row; */
 }
 
+.card-body {
+  margin-bottom: 0px;
+}
+
 .card-img-top {
   min-height: 300px;
   max-height: 300px;
@@ -50,6 +54,16 @@ button {
  color: aliceblue;
 }
 
+#four-o-four {
+  border-radius: 50px;
+  margin-top: 6%;
+}
+
+#four-o-four-text {
+  
+  margin-top: 4%;
+}
+
 .form-select {
   border-radius: 5px;
   width: 200px;
@@ -71,11 +85,37 @@ button {
   border-color: #1b71e2;
 }
 
+#login-img {
+  border-radius: 10px;
+  max-width: 800px;
+  border-style: solid;
+  border-color: #000000;
+  box-shadow: 3px 5px 4px 5px #dedede;
+}
+
 .login-message {
   margin-left: auto;
   margin-right: auto;
   margin-top: 2%;
 }
+
+.login-message h4{
+  
+  color: #410707;
+  font-weight:350px;
+}
+
+.login-text {
+  color: transparent;
+  margin-bottom: 1%;
+  margin-top: 1%;
+  text-align: center;
+  font-weight: bolder;
+  flex-direction: column;
+  background-image: linear-gradient(60deg, #07eadf, #012044e0);
+  background-clip: text;
+}
+
 
 #logo {
   margin-right: 5%;
@@ -88,8 +128,6 @@ button {
   border-style: solid;
   border-color: #23a6d5;
 }
-
-
 
 #meta-data-button {
   background: linear-gradient(0deg, rgb(27, 86, 215), #444444);
@@ -136,8 +174,6 @@ button {
   flex-direction: column;
   background-image: linear-gradient(60deg, #8ac1ff, #f9a768);
   background-clip: text;
-  
-  
 }
 
 .mint-bullets-container {
@@ -247,16 +283,30 @@ button {
   z-index: -1;
 }
 
+.transfer {
+  justify-content: center;
+  margin: auto;
+  overflow: hidden;
+}
+
 #transfer-button {
   width: 100%;
   max-height: 10px;
 }
 
-.transfer {
-  justify-content: center;
-  margin: auto;
-  overflow: hidden;
-  
+#transfer-page-button {
+  background-color: #000000;
+  background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
+  color: aqua;
+  border-radius: 20px; 
+  animation: glowing 4300ms infinite;
+  transition: all 0.2s ease-in-out;
+  margin-top: 8%;
+}
+
+#transfer-card-body {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 #transfer-img {

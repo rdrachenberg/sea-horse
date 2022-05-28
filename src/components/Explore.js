@@ -8,13 +8,14 @@ const Explore = () => {
     const [count, setCount] = useState(0);
     const [nftObject, setnftObject] = useState({});
     const [nftArray, setNftArray] = useState([]);
-    const [artist, setArtist] = useState('');
+    const [artist, setArtist] = useState('0xE93C817Ed22EA606B2a948C1536013013F34DBB9');
     //* 0xE93C817Ed22EA606B2a948C1536013013F34DBB9 !!!!!!!!!!!!GOOD!!!!!!!!!!!!!
     //* 0x2995EdF91516499909a5b2565F95F3CD7F8e5Beb !!!!!!!!!! MINE !!!!!!!!!!!!!!
     //* 0xa7a26b29d4530Ac7EAAFd8238474979508eE2D27 !!!!!!!!!! GOOD Rate limit 6 !!!!!!!!!
     const fetchAllTokenIds = async (passedContract) => {
-        console.log('this is the artist coming in here \n' , artist)
+        
         setArtist(passedContract);
+        console.log('this is the artist coming in here:  ' , artist)
         await artist
         
         const options = {
@@ -22,8 +23,6 @@ const Explore = () => {
             chain: 'ropsten',
             limit: 6
         }
-
-        
 
         const NFTs = await Web3Api.token.getAllTokenIds(options);
         let total = NFTs.result.length;
@@ -36,12 +35,13 @@ const Explore = () => {
 
         setnftObject(NFTs)
         // console.log(nftObject)
+        
     }
 
     const handleSelectOption = async (e) => {
+        // e.preventDefault();
+        console.log('where is this ',e.target.value);
         
-        console.log(e.target.value);
-        await e.target.value;
         setArtist(e.target.value);
         fetchAllTokenIds(e.target.value);
     }
@@ -55,6 +55,12 @@ const Explore = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    useEffect(() => {
+        if(artist) {
+            console.log('here is the the freaking artist son ----- > ',artist)
+        }
+    },[artist])
+
     return(
         <div className='explore'>
             <h4>Your total NFT count is {count}</h4>
@@ -63,7 +69,7 @@ const Explore = () => {
                 <select className="form-select" aria-label="Default select" onChange={handleSelectOption}>
                     {/* <option selected>Select Artist</option> */}
                     <option value="0xE93C817Ed22EA606B2a948C1536013013F34DBB9">Mutant Ape Yacht Club</option>
-                    <option value="0x2995EdF91516499909a5b2565F95F3CD7F8e5Beb">Cool Cat</option>
+                    <option defaultValue value="0x2995EdF91516499909a5b2565F95F3CD7F8e5Beb">Cool Cat</option>
                     <option value="0xa7a26b29d4530Ac7EAAFd8238474979508eE2D27">Hodge Podge</option>
                 </select>
             </div>

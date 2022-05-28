@@ -20,6 +20,8 @@ const MintFees = () => {
     const [acctBalance, setAcctBalance] = useState(0);
     const [ropstenLink, setRopstenLink] = useState('')
 
+    const [erroredOut, setErroredOut] = useState(false)
+
     const fetchNativeBalance = async () => {
         const options = {
             chain: 'ropsten',
@@ -67,20 +69,35 @@ const MintFees = () => {
         };
         console.log(options)
 
-        const tx = await Moralis.executeFunction({...options}).then((res, err) => {
-            if(err) {
-                console.log(err);
+        const tx = await Moralis.executeFunction({...options}).then((res, error) => {
+            if(error) {
+                console.log('is this the err var',error);
+                if(error.code === -32603) {
+                    console.log('not owner metamask triggered');
+                }
             }
             console.log('ropten etherscan here: \n', 'https://ropsten.etherscan.io/tx/'+res.hash);
 
             if(res) {
-                console.log(res)
+                console.log('res var here--- \n',res)
+               
                 setToggleSuccess(true);
                 setRopstenLink('https://ropsten.etherscan.io/tx/'+res.hash)
             }
 
-        })
-        console.log(tx);
+        }).catch(function(error){
+            if(error) {
+                setErroredOut(true);
+                console.log(error);
+                setTimeout(() => {
+                    setErroredOut(false);
+                }, 3000)
+            }
+            
+        }) 
+        
+
+        console.log('this is the tx var here ---> ',tx);
     }
 
     useEffect(() => {
@@ -97,6 +114,18 @@ const MintFees = () => {
 
     return (
         <div>
+            <div>
+                {erroredOut? 
+                    <div className="alert alert-danger" role="alert">
+                    <h4>You are not the owner of the Sea Horse Mint.</h4>
+                    <h5>Check yourself</h5>
+                    <div>
+                        <a href={ropstenLink} target='_blank' rel='noreferrer'>{ropstenLink}</a>
+                    </div>
+                </div>
+                : 
+                    <></>}
+            </div>
             {toggleSuccess? 
                 <div>
                     
@@ -116,6 +145,9 @@ const MintFees = () => {
                 <div>
                     <h1>Collect Mint Fees of {acctBalance}</h1>
                     <h5>Only the owner of the mint can claim minting fees.</h5>
+                    <h5>Sea Horse mint contract is paybable</h5>
+                    <h5>Mint fee of 0.01 ETH per NFT mint</h5>
+                    <h5>Fees go to support further marketplace development</h5>
                 </div>
             }
 

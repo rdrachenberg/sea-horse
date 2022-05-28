@@ -134,7 +134,7 @@ const Mint = () => {
                     
                     <div className="form-group">
                     <label htmlFor="img-file" id="img-file">Please upload your NFT img file below</label>
-                    <input type="file" className="form-control-file" id="exampleFormControlFile1" onChange={ (e) => {
+                    <input type="file" accept=".jpg,.png,.gif" className="form-control-file" id="exampleFormControlFile1" onChange={ (e) => {
                         console.log(e.target.files[0])
                         setFile(e.target.files[0])}} ref={imgHash}/>
                     </div>

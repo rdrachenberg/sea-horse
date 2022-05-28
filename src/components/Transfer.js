@@ -137,15 +137,15 @@ const Transfer = (props) => {
                         <img className='card-img-top' id='transfer-img' src={nftImage} alt='nft file img' />
                         </div>
                         
-                        <div className='card-body'>
+                        <div className='card-body' id='transfer-card-body'>
                             <h5>{nftName}</h5>
                             <p>Description: {nftDescription}</p>
                             <p>NFT id: {tokenID}</p>
                         </div>
                         <form className='col col-md-12 transfer'>
-                            <input className='form-control' type='text' placeholder='Receivers address?' ref={receiver}/>    
+                            <input className='form-control' id='receiver-address' type='text' placeholder='Receivers address?' ref={receiver}/>    
                         </form>
-                        <button className='btn glowing' id='mint-button' onClick={handleTransferClick}>Transfer</button>
+                        <button className='btn glowing' id='transfer-page-button' onClick={handleTransferClick}>Transfer</button>
                     </div>
                 </div>
             }
