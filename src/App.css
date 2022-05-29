@@ -54,6 +54,10 @@ button {
  color: aliceblue;
 }
 
+.footer {
+  color: aliceblue;
+}
+
 #four-o-four {
   border-radius: 50px;
   margin-top: 6%;
@@ -266,6 +270,10 @@ button {
   background-color: #000000;
   color: red;
   z-index: 1;
+}
+
+.rights {
+  margin-top: 5%;
 }
 
 #sold {

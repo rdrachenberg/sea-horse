@@ -4,9 +4,9 @@ const Footer = () => {
 
     return (
         <div className='navbar fixed-bottom navbar-dark bg-dark' id='footer'>
-            <a href='/'><p>Home</p></a>
-            <a href='/mint'><p>Mint</p></a>
-            <a href='/explore'><p>Explore</p></a>
+            <a className='footer' href='/'><p>Home</p></a>
+            <a className='footer' href='/mint'><p>Mint</p></a>
+            <a className='footer' href='/explore'><p>Explore</p></a>
         </div>
     )
 }

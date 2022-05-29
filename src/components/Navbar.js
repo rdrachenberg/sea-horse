@@ -68,6 +68,11 @@ const Navbar = () => {
             Explore
           </a>
         </li>
+        <li className="nav-item">
+          <a className="nav-link" href="/marketplace">
+            Marketplace
+          </a>
+        </li>
         
       </ul>
     </div>
