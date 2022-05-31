@@ -14,3 +14,6 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
     console.log('server listening on; ', PORT);
 })
+
+// json start script 
+//"start": "node server.js && npm rebuild node-sass && npm run build-css && npm react-app-rewired start",

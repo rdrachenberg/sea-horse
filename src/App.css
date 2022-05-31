@@ -120,7 +120,6 @@ button {
   background-clip: text;
 }
 
-
 #logo {
   margin-right: 5%;
   max-height: '25px';
@@ -365,3 +364,98 @@ button {
   text-align: left;
 }
 
+
+@media (max-width: 400px) {
+
+  #address-div {
+    display: flex;
+    flex-direction: row;
+   
+    margin-bottom: 2%;
+    margin-top: 2%;
+    max-width: 73%;
+  }
+
+  .alert .alert-success{
+    margin-bottom: 0px;
+
+  }
+
+  #display-address {
+    flex-wrap: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+
+  .footer {
+    justify-content: center;
+    min-width: 30%;
+  }
+
+  #footer {
+    justify-content: center;
+    
+    min-width: 100%;
+  }
+
+  #login {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #login-logout-div {
+    display: flex;
+    align-self: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 2%;
+    margin-top: 2%; 
+  }
+
+  #login-img {
+    max-width: 90%;
+  }
+
+  .mint {
+    max-width: 97%;
+  }
+  .mint-background {
+    min-width: 90%;
+  }
+
+  .card-row {
+    
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  #welcome-div {
+    position: relative;
+    height: auto;
+    min-height: 50px;
+    width: 370px;
+    padding: 15px;
+    box-shadow: 3px 5px 4px 5px #dedede;
+    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+  }
+
+  #welcome-div-hidden {
+    position: relative;
+    height: 35px;
+    width: 95%;
+    
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 1px 3px 2px 3px #dedede;
+  }
+
+  .welcome-text {
+    font-size: medium;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

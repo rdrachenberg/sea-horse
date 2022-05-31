@@ -63,7 +63,7 @@ function App() {
           : 
             <div>
               <Switch>
-                <Route exact path='/' component={Welcome} />
+                <Route exact path='*' component={Welcome} />
               </Switch>
             </div>
           }

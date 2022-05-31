@@ -77,12 +77,12 @@ const Navbar = () => {
       </ul>
     </div>
     {isAuthenticated? 
-    <div>
+    <div id='address-div'>
         <p id='display-address'>{user.get('ethAddress')}</p>
     </div>
     : <></>}
     {isAuthenticated? 
-      <div>
+      <div id='login-logout-div'>
         <button id='logout' onClick={logOut} disabled={isAuthenticating}> Logout ✖️</button>
       </div>
       : <button id='login' onClick={login}> 🦊 MetaMask Login </button>}

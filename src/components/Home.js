@@ -14,6 +14,7 @@ const Home = () => {
     const [toggleSuccess, setToggleSuccess] = useState(false);
     const [toggleLogoutMessage, settoggleLogoutMessage] = useState(false);
 
+    // eslint-disable-next-line no-unused-vars
     const [toggleNameInput, setToggleNameInput] = useState(true);
 
     const [usersName, setUsersName] = useState()
@@ -126,41 +127,41 @@ const Home = () => {
           </div>
           {isAuthenticated?
           <div>
-          <div >
-            {toggleUserData?
-              <div className="row">
-              <div id='welcome-div' onClick={handleAccountInfoClick}>
-                <h5 className="welcome-text">Your user id is: {user.id}</h5>
-                <h5 className="welcome-text">Your eth account is: <a style={{color: 'white', fontWeight: 'bolder'}} href={'https://ropsten.etherscan.io/address/'+account} target='_blank' rel='noreferrer'>{account}</a></h5>
-                <h5 className="welcome-text">Your balance is: <a style={{color: 'white', fontWeight: 'bolder'}} href='/'>{acctBalance}</a></h5>
-              </div>
-              </div>
-              :
-              <div id='welcome-div-hidden' onClick={handleAccountInfoClick}>
-                Account Info
-              </div>}   
-          </div>
-            
             <div>
-            {usersName ?  
-              <div>
-                <div>
-                    <h4>Welcome {usersName}</h4>
+              {toggleUserData?
+                <div className="row">
+                <div id='welcome-div' onClick={handleAccountInfoClick}>
+                  <h5 className="welcome-text">Your user id is: {user.id}</h5>
+                  <h5 className="welcome-text">Your eth account is: <a style={{color: 'white', fontWeight: 'bolder'}} href={'https://ropsten.etherscan.io/address/'+account} target='_blank' rel='noreferrer'>{account}</a></h5>
+                  <h5 className="welcome-text">Your balance is: <a style={{color: 'white', fontWeight: 'bolder'}} href='/'>{acctBalance}</a></h5>
                 </div>
-                <div>
-                <Cards />
                 </div>
-              </div>
-            : 
-            <div id="name">
-              <div className="input-group mb-6" style={{alignItems: "center"}}>
-                <input type="text" className="form-control" placeholder="Whats your name?" aria-label="Your name" aria-describedby="basic-addon2" ref={usersFirstName}/>
-                <div className="input-group-append">
-                  <button className="btn btn-primary"  onClick={handleNameInputClick} disabled={isUserUpdating}>Button</button>
+              :
+                <div id='welcome-div-hidden' onClick={handleAccountInfoClick}>
+                  Account Info
                 </div>
-              </div>
+              }   
             </div>
-            }
+            <div>
+              {usersName ?  
+                <div>
+                  <div>
+                      <h4>Welcome {usersName}</h4>
+                  </div>
+                  <div>
+                  <Cards />
+                  </div>
+                </div>
+              : 
+              <div id="name">
+                <div className="input-group mb-6" style={{alignItems: "center"}}>
+                  <input type="text" className="form-control" placeholder="Whats your name?" aria-label="Your name" aria-describedby="basic-addon2" ref={usersFirstName}/>
+                  <div className="input-group-append">
+                    <button className="btn btn-primary"  onClick={handleNameInputClick} disabled={isUserUpdating}>Button</button>
+                  </div>
+                </div>
+              </div>
+              }
             </div>
           </div>
           : 
