@@ -50,6 +50,10 @@ button {
   margin-bottom: auto;
 }
 
+#formatted-address {
+  color: #23a6d5
+}
+
 #footer {
  color: aliceblue;
 }
@@ -259,7 +263,6 @@ button {
   
 }
 
-
 #mint-fees-img {
   border-radius: 25px;
   max-height: 300px;
@@ -282,9 +285,7 @@ button {
   color: aliceblue;
 }
 
-.navbar-brand {
-  margin-left: 5px;
-}
+
 
 .overlay {
   position: relative;
@@ -398,11 +399,11 @@ button {
 @media (max-width: 400px) {
 
   #address-div {
-    display: flex;
-    flex-direction: row;
+    display: flex-end;
+    flex-grow: 2;
     margin-bottom: 2%;
     margin-top: 2%;
-    max-width: 73%;
+    max-width: 100%;
   }
 
   .alert .alert-success{
@@ -410,12 +411,9 @@ button {
 
   }
 
-  #display-address {
-    flex-wrap: wrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%;
-  }
+  /* #display-address {
+   
+  } */
 
   .footer {
     justify-content: center;
@@ -429,21 +427,27 @@ button {
   }
 
   #login {
-    width: 80%;
+    width: 200px;
     margin-left: auto;
     margin-right: auto;
+    
   }
 
-  #login-logout-div {
+  .login-logout-div {
     display: flex;
-    align-self: flex-start;
-    justify-content: flex-start;
-    margin-bottom: 2%;
-    margin-top: 2%; 
+    justify-content: center;
+    width: 325px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
   }
 
   #login-img {
     max-width: 90%;
+  }
+
+  #logout {
+    width: 190px;
   }
 
   .mint {
@@ -473,6 +477,12 @@ button {
     font-size: x-large;
     margin-top: 2%;
     margin-bottom: 4%;
+  }
+
+  .navbar-brand {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 7%;
   }
 
   .card-row {

@@ -1,16 +1,35 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useMoralis } from "react-moralis";
 import logo from '../logo/seahorse.jpg';
 
 
 const Navbar = () => {
-    const {authenticate, isAuthenticated, isAuthenticating, user, logout } = useMoralis();
-    
-  useEffect(() => {
-    if(isAuthenticated){
-      console.log('is authenticated');
-    }
-  }, [isAuthenticated]);
+  const {authenticate, isAuthenticated, isAuthenticating, user, logout } = useMoralis();
+
+  const [userAddress, setUserAddress] = useState('');
+  const [userFullAddress, setUserFullAddress] = useState('');
+  const [addressLink, setAddressLink] = useState('');
+
+  const getUserAddress = async () => {
+    let fullAddress = await user.get("ethAddress");
+    let addressArray = await [...fullAddress];
+
+    let addressCut = await addressArray.splice(4, 34, '...');
+    addressCut = [];
+
+    console.log('should be empty array --> ', addressCut)
+    setUserFullAddress(fullAddress);
+
+    console.log(userFullAddress)
+    setAddressLink('https://ropsten.etherscan.io/address/'+fullAddress);
+
+    addressArray = addressArray.join('')
+    console.log(addressArray);
+    // console.log(addressCut);
+
+    setUserAddress(await addressArray);
+    console.log(await userAddress);
+  }
 
   const login = async () => {
     
@@ -20,12 +39,23 @@ const Navbar = () => {
         // console.log('Logged in user: ', user);
         // console.log(user.get("ethAddress"));
         // console.log('here is the account var ',account)
+        console.log('user is authenticated')
       })
       .catch(function(err) {
         console.log(err);
       })
     }
   }
+    
+  useEffect(() => {
+    if(isAuthenticated){
+      console.log('is authenticated');
+      getUserAddress();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  
 
   const logOut = async () => {
     await logout();
@@ -73,22 +103,26 @@ const Navbar = () => {
             Marketplace
           </a>
         </li>
-        
+        {isAuthenticated? 
+          <li className='nav-item'>
+            <a className='nav-link' id='formatted-address' href={addressLink} target='_blank' rel='noreferrer'>{userAddress}</a>
+          </li>
+        :
+          <></>
+        }
       </ul>
     </div>
-    {isAuthenticated? 
-    <div id='address-div'>
-        <p id='display-address'>{user.get('ethAddress')}</p>
-    </div>
-    : 
-      <></>
-    }
-    {isAuthenticated? 
-      <div id='login-logout-div'>
-        <button id='logout' onClick={logOut} disabled={isAuthenticating}> Logout ✖️</button>
-      </div>
-      : <button id='login' onClick={login}> 🦊 MetaMask Login </button>}
-      
+    <div className='login-logout-div'>
+      {isAuthenticated?
+        <div>
+          <button id='logout' onClick={logOut} disabled={isAuthenticating}> Logout ✖️</button>
+        </div>
+      : 
+        <div>
+          <button id='login' onClick={login}> 🦊 MetaMask Login </button>
+        </div>
+      }
+    </div> 
   </nav>
   );
 }
