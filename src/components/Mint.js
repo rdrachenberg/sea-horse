@@ -92,13 +92,6 @@ const Mint = () => {
        
     }
 
-    // function done() {
-
-    // }
-    
-
-    
-
     useEffect(() => {
         if(isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
         

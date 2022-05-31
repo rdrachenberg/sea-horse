@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import { useLocation} from 'react-router-dom';
 import { useMoralis } from 'react-moralis';
 import Moralis from 'moralis';
+import LoadingSpinner from './Spinner';
 
 
 
@@ -26,7 +27,10 @@ const Transfer = (props) => {
     const [index, setIndex] = useState('');
     const [confirmations, setConfirmations] = useState('');
 
-    const searchParams = new URLSearchParams(params.search)
+    const [isLoading, setIsLoading] = useState(false);
+    const searchParams = new URLSearchParams(params.search);
+
+    
     
     const getID = () => {
         for(const p of searchParams) {
@@ -82,10 +86,13 @@ const Transfer = (props) => {
         // console.log(receiver.current.vaule);
         console.log('transfer button has been clicked');
         // console.log(options)
+        
         let transaction = await Moralis.transfer(options);
+        setIsLoading(true);
         let result = await transaction.wait();
 
         if(result) {
+            setIsLoading(false);
             console.log(result);
             setSuccessfullTransaction(true);
             setToggleSuccess(true)
@@ -131,23 +138,30 @@ const Transfer = (props) => {
                 </div>
             : 
                 <div>
-                    <h2>Transfer your NFT</h2>
-                    <div className='card' style={{width: '18rem', maxWidth:'18rem', padding: '10px', margin: 'auto'}}>
-                        <div className='transfer-container'>
-                        <img className='card-img-top' id='transfer-img' src={nftImage} alt='nft file img' />
+                    {isLoading? 
+                        <LoadingSpinner />
+                    :
+                        <div>
+                            <h2>Transfer your NFT</h2>
+                            <div className='card' style={{width: '18rem', maxWidth:'18rem', padding: '10px', margin: 'auto'}}>
+                                <div className='transfer-container'>
+                                <img className='card-img-top' id='transfer-img' src={nftImage} alt='nft file img' />
+                                </div>
+                                
+                                <div className='card-body' id='transfer-card-body'>
+                                    <h5>{nftName}</h5>
+                                    <p>Description: {nftDescription}</p>
+                                    <p>NFT id: {tokenID}</p>
+                                </div>
+                                <form className='col col-md-12 transfer'>
+                                    <input className='form-control' id='receiver-address' type='text' placeholder='Receivers address?' ref={receiver}/>    
+                                </form>
+                                <button className='btn glowing' id='transfer-page-button' onClick={handleTransferClick}>Transfer</button>
+                            </div>
                         </div>
-                        
-                        <div className='card-body' id='transfer-card-body'>
-                            <h5>{nftName}</h5>
-                            <p>Description: {nftDescription}</p>
-                            <p>NFT id: {tokenID}</p>
-                        </div>
-                        <form className='col col-md-12 transfer'>
-                            <input className='form-control' id='receiver-address' type='text' placeholder='Receivers address?' ref={receiver}/>    
-                        </form>
-                        <button className='btn glowing' id='transfer-page-button' onClick={handleTransferClick}>Transfer</button>
-                    </div>
+                    }
                 </div>
+                
             }
             
         <div>
