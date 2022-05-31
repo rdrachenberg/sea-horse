@@ -342,6 +342,7 @@ button {
   box-shadow: 3px 5px 4px 5px #dedede;
   margin-bottom: 10px;
 }
+
 #welcome-div-hidden {
   position: relative;
   height: 35px;
@@ -370,7 +371,6 @@ button {
   #address-div {
     display: flex;
     flex-direction: row;
-   
     margin-bottom: 2%;
     margin-top: 2%;
     max-width: 73%;
@@ -422,6 +422,28 @@ button {
   }
   .mint-background {
     min-width: 90%;
+  }
+
+  #mint-button-collect{
+    min-width: 90%;
+    margin-top: 8%;
+  }
+
+  #mint-fees-img {
+    max-width: 88%;
+    margin-top: 5%;
+    margin-bottom: 6%;
+  }
+
+  .mint-fee-text {
+    font-size: medium;
+    margin-bottom: 2%;
+  }
+
+  #mint-fee-title {
+    font-size: x-large;
+    margin-top: 2%;
+    margin-bottom: 4%;
   }
 
   .card-row {

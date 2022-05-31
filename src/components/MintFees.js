@@ -143,11 +143,11 @@ const MintFees = () => {
                 </div>
             : 
                 <div>
-                    <h1>Collect Mint Fees of {acctBalance}</h1>
-                    <h5>Only the owner of the mint can claim minting fees.</h5>
-                    <h5>Sea Horse mint contract is paybable</h5>
-                    <h5>Mint fee of 0.01 ETH per NFT mint</h5>
-                    <h5>Fees go to support further marketplace development</h5>
+                    <h1 id='mint-fee-title'>Collect Mint Fees of {acctBalance}</h1>
+                    <h5 className='mint-fee-text'>Only the owner of the mint can claim minting fees.</h5>
+                    <h5 className='mint-fee-text'>Sea Horse mint contract is paybable</h5>
+                    <h5 className='mint-fee-text'>Mint fee of 0.01 ETH per NFT mint</h5>
+                    <h5 className='mint-fee-text'>Fees go to support further marketplace development</h5>
                 </div>
             }
 
