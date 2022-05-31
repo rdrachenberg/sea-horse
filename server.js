@@ -17,3 +17,9 @@ app.listen(PORT, () => {
 
 // json start script 
 //"start": "node server.js && npm rebuild node-sass && npm run build-css && npm react-app-rewired start",
+
+/**
+maybe background restyle 
+background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(14,14,125,1) 37%, rgba(107,180,195,1) 100%);
+ */
