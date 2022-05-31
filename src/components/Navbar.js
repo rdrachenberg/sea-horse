@@ -80,7 +80,9 @@ const Navbar = () => {
     <div id='address-div'>
         <p id='display-address'>{user.get('ethAddress')}</p>
     </div>
-    : <></>}
+    : 
+      <></>
+    }
     {isAuthenticated? 
       <div id='login-logout-div'>
         <button id='logout' onClick={logOut} disabled={isAuthenticating}> Logout ✖️</button>

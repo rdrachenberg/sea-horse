@@ -30,7 +30,7 @@
     "web3": "^1.7.3"
   },
   "scripts": {
-    "start": "node server.js && npm rebuild node-sass && npm run build-css && npm react-app-rewired start",
+    "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject"

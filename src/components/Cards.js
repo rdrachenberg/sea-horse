@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useMoralisWeb3Api} from "react-moralis";
 
+
 const Cards = () => {
     const [count, setCount] = useState(0);
     const [nftObject, setnftObject] = useState({});
@@ -27,12 +28,6 @@ const Cards = () => {
     }
 
     const handleTransferClick = (e, name, token_id, description) => {
-        // e.preventDefault();
-        // console.log(e)
-        // console.log(e.currentTarget)
-        // console.log(e.target.vaule)
-        // console.log(name)
-
     }
 
     useEffect(() => {
@@ -55,13 +50,14 @@ const Cards = () => {
             {nftObject? 
                 <div className='card-row'>
                 {nftArray.map((items) => {
-                    const {metadata, token_id, token_uri} = items
+                    const {metadata, token_id, token_uri, token_hash} = items
+                    
                     const metaData = JSON.parse(metadata)
                     
                     const {name, description, image} = metaData;
                     
                     return (
-                        <div className="card" key={token_id} style={{width: '18rem', maxWidth:'18rem', padding: '10px', margin: '10px'}}>
+                        <div className="card" key={token_hash} style={{width: '18rem', maxWidth:'18rem', padding: '10px', margin: '10px'}}>
                             <img className="card-img-top" src={image} alt="Card img cap" style={{maxHeight: "300px"}} />
                             <div className="card-body">
                                 <h5 className="card-title">{name}</h5>

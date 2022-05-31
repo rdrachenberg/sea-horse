@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, { useEffect, Suspense, lazy} from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,23 +7,22 @@ import {
 
 import './App.css';
 import { useMoralis } from "react-moralis";
-import Navbar  from "./components/Navbar";
-import Home from "./components/Home";
-import Mint from './components/Mint';
-import Explore from './components/Explore';
-import Transfer from './components/Transfer';
-import MintFees from "./components/MintFees";
-import Footer from "./components/Footer";
-import FourOFour from "./components/404";
-import Welcome from "./components/Welcome";
-import Marketplace from "./components/Marketplace";
+import LoadingSpinner from "./components/Spinner";
 
 
-
+const Navbar = lazy(() => import("./components/Navbar"));
+const Home = lazy(() => import("./components/Home"));
+const Mint = lazy(() => import("./components/Mint"));
+const Explore = lazy(() => import("./components/Explore"));
+const Transfer = lazy(() => import("./components/Transfer"));
+const MintFees = lazy(() => import("./components/MintFees"));
+const Footer = lazy(() => import("./components/Footer"));
+const FourOFour = lazy(() => import("./components/404"));
+const Welcome = lazy(() => import("./components/Welcome"));
+const Marketplace = lazy(() => import("./components/Marketplace"));
 
 function App() {
   const { isAuthenticated } = useMoralis();
-  
 
   useEffect(() => {
     if(isAuthenticated) {
@@ -33,42 +32,31 @@ function App() {
 
   return (
     <Router>
-      <div className="App" >
-        <Navbar />
-          {isAuthenticated?
-            <div>
-              <Switch>
-                <Route exact path='/' component={Home}>
-                </Route>
-                <Route exact path='/mint'>
-                  <Mint />
-                </Route>
-                <Route exact path='/explore'>
-                  <Explore />
-                </Route>
-                <Route exact path='/transfer'>
-                  <Transfer />
-                </Route>
-                <Route exact path='/mint-fees'>
-                  <MintFees />
-                </Route>
-                <Route exact path='/marketplace'>
-                  <Marketplace />
-                </Route>
-                <Route exact path='*'>
-                  <FourOFour />
-                </Route>
-              </Switch>
-            </div>
-          : 
-            <div>
-              <Switch>
-                <Route exact path='*' component={Welcome} />
-              </Switch>
-            </div>
-          }
-        <Footer />
-      </div>
+      <Suspense fallback={<LoadingSpinner />}>
+        <div className="App" >
+          <Navbar />
+            {isAuthenticated?
+              <div>
+                <Switch>
+                  <Route exact path='/' component={Home} />     
+                  <Route exact path='/mint' component={Mint} />
+                  <Route exact path='/explore' component={Explore} />
+                  <Route exact path='/transfer' component={Transfer} />
+                  <Route exact path='/mint-fees' component={MintFees} />
+                  <Route exact path='/marketplace' component={Marketplace} />
+                  <Route exact path='*' component={FourOFour} />
+                </Switch>
+              </div>
+            : 
+              <div>
+                <Switch>
+                  <Route exact path='*' component={Welcome} />
+                </Switch>
+              </div>
+            }
+          <Footer />
+        </div>
+      </Suspense>
     </Router>
   );
 }
