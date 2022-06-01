@@ -35,7 +35,9 @@ const Navbar = () => {
     
     if(!isAuthenticated) {
       await authenticate({signingMessage: 'Welcome to Sea Horse. You must sign this message to authenticate your awesome self!'})
-      .then(getUserAddress())
+      .then((user) => {
+        console.log(user);
+      })
       .catch(function(err) {
         console.log(err);
       })
@@ -48,7 +50,7 @@ const Navbar = () => {
       getUserAddress();
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userAddress]);
+  }, []);
 
   
 

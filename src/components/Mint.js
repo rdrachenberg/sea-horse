@@ -52,10 +52,11 @@ const Mint = () => {
         const metaDataURI = file1.ipfs();
         console.log(metaDataURI);
 
+        // eslint-disable-next-line no-unused-vars
         const txt = await mintToken(metaDataURI).then(() => {
             console.log('notify')
         });
-        console.log(txt)
+        // console.log(txt)
         console.log(JSON.stringify(finalFile));
     }
 
