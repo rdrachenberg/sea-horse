@@ -156,6 +156,7 @@ button {
 #logout {
   border-style: solid;
   border-color: #23a6d5;
+  width: 185px;
 }
 
 #meta-data-button {
@@ -395,6 +396,17 @@ button {
   text-align: left;
 }
 
+#x-img {
+  max-width: 18px;
+  margin-left: 2%;
+  margin-bottom: 2px;
+}
+
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
 
 @media (max-width: 400px) {
 
@@ -532,4 +544,9 @@ button {
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  #x-img {
+    margin-bottom: 0px;
+  }
+
 }

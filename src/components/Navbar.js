@@ -35,12 +35,7 @@ const Navbar = () => {
     
     if(!isAuthenticated) {
       await authenticate({signingMessage: 'Welcome to Sea Horse. You must sign this message to authenticate your awesome self!'})
-      .then(function(user) {
-        // console.log('Logged in user: ', user);
-        // console.log(user.get("ethAddress"));
-        // console.log('here is the account var ',account)
-        console.log('user is authenticated')
-      })
+      .then(getUserAddress())
       .catch(function(err) {
         console.log(err);
       })
@@ -53,7 +48,7 @@ const Navbar = () => {
       getUserAddress();
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [userAddress]);
 
   
 
@@ -67,9 +62,7 @@ const Navbar = () => {
         <a href='/'>
           <img src={logo} id='logo' style={{maxHeight: '30px', borderRadius: '6px', padding: '2px'}} alt='logo'/>
         </a>
-        <a className="navbar-brand" href="/">
-        Sea Horse
-        </a>
+        <a className="navbar-brand" href="/">Sea Horse</a>
     <button
       className="navbar-toggler"
       type="button"
@@ -103,19 +96,20 @@ const Navbar = () => {
             Marketplace
           </a>
         </li>
-        {isAuthenticated? 
-          <li className='nav-item'>
-            <a className='nav-link' id='formatted-address' href={addressLink} target='_blank' rel='noreferrer'>{userAddress}</a>
-          </li>
-        :
-          <></>
-        }
+        <li className="nav-item">
+          <a className="nav-link" href={addressLink} target='_blank' rel='noreferrer'>
+            Etherscan.io
+          </a>
+        </li>
+        
       </ul>
     </div>
     <div className='login-logout-div'>
       {isAuthenticated?
         <div>
-          <button id='logout' onClick={logOut} disabled={isAuthenticating}> Logout ✖️</button>
+          <button id='logout' onClick={logOut} disabled={isAuthenticating}><a id='formatted-address' className='disabled' href='/'>{userAddress}</a> Logout 
+          <img id='x-img' src="https://www.downloadclipart.net/thumb/17661-power-button-red-vector-thumb.png"  alt="power off logoff" />
+          </button>
         </div>
       : 
         <div>
