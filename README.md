@@ -1,6 +1,17 @@
 # Sea Horse 
 
-#### A Blockchain NFT Minter Dapp  [Heroku Deployed](https://sea-horse.herokuapp.com/) 
+#### A Blockchain NFT Minter Dapp and Owner Dashbord. [Heroku Deployed Here](https://sea-horse.herokuapp.com/)
+
+
+<br/>
+
+#### ROPSTEN TESTNET CONTRACT ADDRESS:
+    0x8e0dFC0785102D94Fec8d4E3BD7Bf84290Da04F5    
+
+
+### [Contract Address on Etherscan can be found HERE](https://ropsten.etherscan.io/address/0x8e0dFC0785102D94Fec8d4E3BD7Bf84290Da04F5)
+
+<br/>
 
 <p align='center'>
     <img src='https://img.shields.io/badge/JavaScript-79.2%25-brightgreen?style=plastic&logo=javascript'>
@@ -49,7 +60,7 @@
 </br>
 
 ### Metamask Authentication
-<p align='center'>
+<p align='left'>
     <img src="./assets/metamask-authentication.png" height='500'>
 </p>
 </br>
