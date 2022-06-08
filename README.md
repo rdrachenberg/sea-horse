@@ -52,6 +52,32 @@
 
     Moralis, Express.js, React.js, Node.js, Solidity
 
+
+### Wire frames 
+<p align='left'>
+    <img src="./assets/NFT Hand Wireframes 2.png" width='100'>
+    <img src="./assets/NFT Hand Wireframes 1.png" width='100'>
+    <img src="./assets/NFT Hand Wireframes final1.png" width='100'>
+    <img src="./assets/NFT Hand Wireframes final2.png" width='100'>
+    
+</p>
+
+
+##  [Prototype Link HERE](https://app.uizard.io/p/5580f809)
+<br/>
+
+### Needed enviromentals 
+    GENERATE_SOURCEMAP=false
+    SKIP_PREFLIGHT_CHECK=true
+    REACT_APP_MORALIS_APP_ID="YOUR MORALIS APP ID HERE"
+    REACT_APP_MORALIS_SERVER="YOUR MORALIS SERVER HERE"
+    REACT_APP_CONTRACT_ADDRESS="NEEDS TO BE YOUR DEPLOYED NFT CONTRACT"
+
+### [Get your Moralis Account Here](https://moralis.io/)
+<br />
+<br />
+
+
 ### Home Page
 <p align='center'>
     <img src="./assets/home-page.png">
