@@ -50,7 +50,7 @@
 
 ### Metamask Authentication
 <p align='center'>
-    <img src="./assets/metamask-authentication.png">
+    <img src="./assets/metamask-authentication.png" height='500'>
 </p>
 </br>
 </br>
