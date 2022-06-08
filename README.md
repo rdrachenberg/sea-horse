@@ -7,11 +7,11 @@
     <img src='https://img.shields.io/badge/CSS-12.3%25-green?style=plascit&logo=CSS3&logoColor=green'>
     <img src='https://img.shields.io/badge/HTML-3.6%25-orange?style=plastic&logo=HTML5&logoColor=orange'>
     <a href='https://github.com/rdrachenberg'>
-        <img src='https://img.shields.io/badge/Mongo%20-DB-blue?style=plastic&logo=mongoDB&logoColor=success'>
+        <img src='https://img.shields.io/badge/Moralis%20-DB-blue?style=plastic&logo=Monero&logoColor=blue'>
     </a>
     <a href='https://github.com/rdrachenberg'>
         <img src='https://img.shields.io/badge/Node%20-.js-success?style=plastic&logo=Node.js&logoColor=success'>
-        <img src='https://img.shields.io/badge/React%20-16.12.0-informational?style=plastic&logo=React&logoColor=#61DAFB'>
+        <img src='https://img.shields.io/badge/React%20-18.1.0-informational?style=plastic&logo=React&logoColor=#61DAFB'>
     </a>
     <a href='https://github.com/rdrachenberg'>
         <img src='https://img.shields.io/badge/Made%20by-rDrachenberg-blue?style=plastic&logo=visual-studio-code&logoColor=blue'>
