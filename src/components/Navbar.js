@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import { useMoralis } from "react-moralis";
 import logo from '../logo/seahorse.jpg';
-
+import {uauth} from '../connectors'
+import { UAuthMoralisConnector } from "@uauth/moralis";
 
 const Navbar = () => {
   const {authenticate, isAuthenticated, isAuthenticating, user, logout } = useMoralis();
@@ -31,6 +32,30 @@ const Navbar = () => {
     console.log(await userAddress);
   }
 
+  const loginWithUnstoppable = async () => {
+    //const uauthMoralisConnector = new UAuthMoralisConnector();
+
+    if(!isAuthenticated) {
+//      try {
+        var authretval = await authenticate(uauth);
+        
+        console.log(authretval);
+        console.log(user);
+
+        console.log(uauth.user);
+        ///let domainDetails = uauthMoralisConnector.uauth.user()
+          
+        //console.log("DOMAIN NAME: " + (await domainDetails).sub)
+        //console.log("OWNER: " + (await domainDetails).wallet_address)
+  
+        // console.log(username);
+  //    } catch (error) {
+    //    console.log(error);
+      //}
+      console.log("KUBIX");
+    }
+  }
+
   const login = async () => {
     
     if(!isAuthenticated) {
@@ -43,7 +68,7 @@ const Navbar = () => {
       })
     }
   }
-    
+
   useEffect(() => {
     if(isAuthenticated){
       console.log('is authenticated');
@@ -115,6 +140,7 @@ const Navbar = () => {
         </div>
       : 
         <div>
+          <button id='loginWithUnstoppable' onClick={loginWithUnstoppable}> Unstoppable Login </button>
           <button id='login' onClick={login}> 🦊 MetaMask Login </button>
         </div>
       }
