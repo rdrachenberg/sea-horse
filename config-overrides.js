@@ -10,6 +10,7 @@ module.exports = function override(config, env) {
         os: require.resolve('os-browserify/browser'),
         buffer: require.resolve('buffer'),
         stream: require.resolve('stream-browserify'),
+        process:  require.resolve('process/browser')
     };
     config.plugins.push(
         new webpack.ProvidePlugin({
@@ -17,6 +18,12 @@ module.exports = function override(config, env) {
             Buffer: ['buffer', 'Buffer'],
         }),
     );
+    config.module.rules.unshift({
+        test: /\.m?js$/,
+        resolve: {
+          fullySpecified: false, // disable the behavior
+        },
+      });
 
     return config;
 }
