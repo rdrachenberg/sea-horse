@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import { useMoralis } from "react-moralis";
 import logo from '../logo/seahorse.jpg';
-import {uauth} from '../connectors'
-import { UAuthMoralisConnector } from "@uauth/moralis";
+import unstoppableDomainsLogo from '../logo/uns-logo.png';
+import {uauth} from '../connectors';
+import {UAuthMoralisConnector} from '@uauth/moralis';
 
 const Navbar = () => {
   const {authenticate, isAuthenticated, isAuthenticating, user, logout } = useMoralis();
@@ -32,27 +33,22 @@ const Navbar = () => {
     console.log(await userAddress);
   }
 
+
   const loginWithUnstoppable = async () => {
-    //const uauthMoralisConnector = new UAuthMoralisConnector();
 
     if(!isAuthenticated) {
-//      try {
-        var authretval = await authenticate(uauth);
-        
-        console.log(authretval);
-        console.log(user);
+      try {
+        await authenticate(uauth);
+        const uauthMoralisConnector = new UAuthMoralisConnector();
 
-        console.log(uauth.user);
-        ///let domainDetails = uauthMoralisConnector.uauth.user()
-          
-        //console.log("DOMAIN NAME: " + (await domainDetails).sub)
-        //console.log("OWNER: " + (await domainDetails).wallet_address)
-  
-        // console.log(username);
-  //    } catch (error) {
-    //    console.log(error);
-      //}
-      console.log("KUBIX");
+        let domainDetails = uauthMoralisConnector.uauth.user().then().catch();
+        let domain = (await domainDetails).sub;
+
+        console.log("Logged in via domain: " + domain);
+        console.log("Domain owner: " + (await domainDetails).wallet_address);
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 
@@ -137,10 +133,11 @@ const Navbar = () => {
           <button id='logout' onClick={logOut} disabled={isAuthenticating}><a id='formatted-address' className='disabled' href='/'>{userAddress}</a> Logout 
           <img id='x-img' src="https://www.downloadclipart.net/thumb/17661-power-button-red-vector-thumb.png"  alt="power off logoff" />
           </button>
+
         </div>
       : 
         <div>
-          <button id='loginWithUnstoppable' onClick={loginWithUnstoppable}> Unstoppable Login </button>
+          <button id='loginWithUnstoppable' onClick={loginWithUnstoppable}><img id='formatted-address' src={unstoppableDomainsLogo} alt="unslogin" /> Login with Unstoppable</button>
           <button id='login' onClick={login}> 🦊 MetaMask Login </button>
         </div>
       }
